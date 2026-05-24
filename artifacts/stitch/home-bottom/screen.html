@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora Voice - 자주 묻는 질문</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#301400",
+                      "secondary": "#00687a",
+                      "surface-container": "#eaedff",
+                      "secondary-fixed": "#acedff",
+                      "surface-bright": "#faf8ff",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#25005a",
+                      "on-secondary-container": "#006172",
+                      "outline": "#7b7487",
+                      "on-tertiary-container": "#ffe0cd",
+                      "outline-variant": "#ccc3d8",
+                      "primary-fixed": "#eaddff",
+                      "tertiary-container": "#a15100",
+                      "primary-fixed-dim": "#d2bbff",
+                      "surface": "#faf8ff",
+                      "on-surface-variant": "#4a4455",
+                      "on-surface": "#131b2e",
+                      "primary-container": "#7c3aed",
+                      "on-secondary-fixed-variant": "#004e5c",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#7d3d00",
+                      "secondary-fixed-dim": "#4cd7f6",
+                      "on-primary-container": "#ede0ff",
+                      "on-tertiary-fixed-variant": "#713700",
+                      "background": "#faf8ff",
+                      "surface-container-low": "#f2f3ff",
+                      "inverse-primary": "#d2bbff",
+                      "on-background": "#131b2e",
+                      "surface-dim": "#d2d9f4",
+                      "inverse-on-surface": "#eef0ff",
+                      "surface-container-highest": "#dae2fd",
+                      "tertiary-fixed": "#ffdcc6",
+                      "primary": "#630ed4",
+                      "surface-tint": "#732ee4",
+                      "secondary-container": "#57dffe",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#5a00c6",
+                      "on-secondary-fixed": "#001f26",
+                      "tertiary-fixed-dim": "#ffb784",
+                      "surface-container-high": "#e2e7ff",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#dae2fd",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#283044"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "unit": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ambient-shadow {
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+        }
+
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px; /* Arbitrary large number to allow content to expand */
+            opacity: 1;
+            margin-top: 16px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, theme('colors.primary') 0%, theme('colors.secondary') 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar Placeholder (for context, normally would be generated fully) -->
+<header class="bg-surface/70 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm fixed top-0 w-full z-50">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-margin-mobile h-20">
+<div class="font-headline-md text-headline-md font-bold text-primary">Velora Voice</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">주요 기능</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">실시간 대화</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">정확도</a>
+<a class="text-primary font-bold border-b-2 border-primary font-body-md text-body-md" href="#">FAQ</a>
+</nav>
+<button class="bg-primary text-on-primary rounded-full px-6 py-2 font-body-md text-body-md hover:bg-primary/90 transition-colors hidden md:block">데모 시작</button>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-24">
+<!-- Section 1: FAQ Preview -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-display-lg hidden md:block text-on-background mb-4">자주 묻는 질문</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:hidden text-on-background mb-4">자주 묻는 질문</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Velora Voice에 대해 궁금한 점을 확인해보세요.</p>
+</div>
+<div class="max-w-3xl mx-auto space-y-4">
+<div class="accordion-item glass-card ambient-shadow rounded-lg p-6 cursor-pointer border border-outline-variant/20 hover:border-primary/30 transition-colors" onclick="toggleAccordion(this)">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">이 데모는 어떤 음성 AI 기능을 보여주나요?</h3>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Velora Voice 데모는 실시간 음성 인식, 자연어 처리, 그리고 감정 분석까지 포함된 포괄적인 AI 음성 인터페이스를 경험할 수 있도록 설계되었습니다. 사용자의 음성을 즉각적으로 텍스트로 변환하고 의도를 파악하여 적절한 응답을 생성합니다.
+                        </p>
+</div>
+</div>
+<div class="accordion-item glass-card ambient-shadow rounded-lg p-6 cursor-pointer border border-outline-variant/20 hover:border-primary/30 transition-colors" onclick="toggleAccordion(this)">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">실시간 대화는 어떤 방식으로 동작하나요?</h3>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            웹소켓(WebSocket) 기술을 활용하여 서버와 클라이언트 간의 지속적인 양방향 연결을 유지합니다. 이를 통해 지연 시간을 최소화하고 마치 실제 사람과 대화하는 듯한 자연스러운 실시간 상호작용을 구현합니다.
+                        </p>
+</div>
+</div>
+<div class="accordion-item glass-card ambient-shadow rounded-lg p-6 cursor-pointer border border-outline-variant/20 hover:border-primary/30 transition-colors" onclick="toggleAccordion(this)">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">음성 인식 정확도는 어느 정도인가요?</h3>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            최신 딥러닝 모델을 적용하여 일상적인 대화 환경에서 95% 이상의 높은 인식률을 자랑합니다. 특히 잡음이 있는 환경에서도 음성을 명확하게 분리해내는 기술이 적용되어 안정적인 성능을 제공합니다.
+                        </p>
+</div>
+</div>
+<div class="accordion-item glass-card ambient-shadow rounded-lg p-6 cursor-pointer border border-outline-variant/20 hover:border-primary/30 transition-colors" onclick="toggleAccordion(this)">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">어떤 환경에서 사용할 수 있나요?</h3>
+<span class="material-symbols-outlined accordion-icon text-on-surface-variant transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            최신 브라우저(Chrome, Safari, Edge 등)를 지원하는 모든 데스크톱 및 모바일 기기에서 별도의 설치 없이 바로 사용 가능합니다. 마이크 접근 권한만 허용해주시면 됩니다.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Final CTA -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="bg-surface-container-low rounded-xl p-12 md:p-24 text-center relative overflow-hidden flex flex-col items-center justify-center ambient-shadow border border-outline-variant/10">
+<!-- Abstract decorative element -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" style="background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15) 0%, transparent 60%), radial-gradient(circle at bottom left, rgba(0, 104, 122, 0.1) 0%, transparent 50%);"></div>
+<h2 class="font-display-lg text-display-lg hidden md:block text-on-background mb-6 relative z-10">지금 데모를 시작해보세요</h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:hidden text-on-background mb-6 relative z-10">지금 데모를 시작해보세요</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl relative z-10">
+                    Velora Voice의 놀라운 음성 AI 기술을 직접 경험하세요.
+                </p>
+<button class="bg-primary text-on-primary font-headline-md text-headline-md px-10 py-4 rounded-full shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-all duration-300 active:scale-95 relative z-10 flex items-center gap-2">
+<span>데모 보기</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Section 3: Footer Component -->
+<footer class="w-full py-16 border-t border-outline-variant/20 bg-surface-container-lowest dark:bg-on-surface">
+<div class="max-w-container-max mx-auto px-margin-desktop px-margin-mobile grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Brand Area -->
+<div class="col-span-1 md:col-span-1 flex flex-col items-start gap-4">
+<div class="font-headline-md text-headline-md font-black text-primary dark:text-primary-fixed-dim">
+                    Velora Voice
+                </div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                    차세대 음성 AI 인터페이스.<br/>
+                    더 자연스러운 디지털 소통의 시작.
+                </p>
+<div class="flex gap-4 mt-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">language</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+<!-- Links Area (Span 2 cols for layout) -->
+<div class="col-span-1 md:col-span-2 grid grid-cols-2 gap-8 mt-8 md:mt-0">
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-md text-[18px] font-semibold text-on-surface mb-2">제품</h4>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">기능 소개</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">요금제</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">API 문서</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-md text-[18px] font-semibold text-on-surface mb-2">지원</h4>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">고객지원</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">문의하기</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">이용약관</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed-dim transition-all" href="#">개인정보처리방침</a>
+</div>
+</div>
+<!-- Copyright -->
+<div class="col-span-1 md:col-span-4 mt-12 pt-8 border-t border-outline-variant/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+                    © 2024 Velora Voice. 모든 권리 보유.
+                </p>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">개인정보처리방침</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function toggleAccordion(element) {
+            // Close other items if desired (optional, currently independent)
+            // document.querySelectorAll('.accordion-item').forEach(item => {
+            //     if (item !== element) item.classList.remove('active');
+            // });
+            
+            element.classList.toggle('active');
+        }
+    </script>
+</body></html>

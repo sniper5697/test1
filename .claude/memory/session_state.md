@@ -1,6 +1,6 @@
 ## Current Phase
-- Phase 0: Discovery 진행 중
-- 사용자의 특별한 지시가 없으면, 감독관이 세 에이전트에게 직접 다음 라운드 지시를 전달하고 결과를 회수하는 운영 원칙을 적용한다.
+- Phase 2: Design 진행 중
+- 홈 페이지는 `stitch` 섹션 단위 생성까지 완료했고, 다음 단계는 `figma` 프레임 조립과 페이지 확장이다.
 
 ## Current Branch
 - `main`
@@ -11,31 +11,31 @@
 - Agent C: `claude cli`
 
 ## Last Completed Task
-- `$socrates` 방식으로 홈페이지 Phase 0 질문을 진행해 1차 요구사항, 페이지 범위, 데모 흐름, 디자인 방향을 구체화했다.
+- `stitch`로 홈페이지를 전체 페이지와 섹션 단위로 생성해 비교 검토했고, 섹션 분리 생성 전략이 더 안정적이라는 결론을 냈다.
+- `stitch-setup`, `figma-setup` 스킬을 만들어 다음 세션에서도 설치/인증/문제 해결을 재사용할 수 있게 했다.
+- Figma 커넥터 접근을 복구해 이 세션에서 `_whoami` 기준 도구 가용성을 확인했다.
 
 ## Source Of Truth
 - 운영 규칙: `AGENTS.md`
-- 현재 요구사항 소스: 사용자와 감독관의 Phase 0 대화
-- 초기 기획 질문 프레임: `$socrates` 스킬
+- 기획 문서: `docs/planning/01-prd.md`, `docs/planning/02-pages-and-roles.md`, `docs/planning/03-build-scope.md`
+- Stitch 산출물: `docs/stitch/`, `artifacts/stitch/`
+- Figma 조립 기준: `docs/figma/home-frame-assembly.md`
 
 ## Open TODO
-- Phase 0 답변을 기반으로 핵심 목표 3개와 페이지별 역할을 정리한다.
-- `docs/planning/` 문서 생성 필요 여부를 판단한다.
-- 기술 스택 1차 추천안을 확정한다.
-- `stitch` 기준의 페이지 작성 범위를 확정한다.
-- `stitch` 결과를 바탕으로 `figma`에서 페이지 구조와 프레임을 정리하는 방식을 확정한다.
-- 테스트 전략과 Playwright 핵심 시나리오를 정의한다.
-- 에이전트별 실제 작업 라운드를 시작한다.
+- `docs/figma/home-frame-assembly.md` 기준으로 홈 프레임을 실제 Figma 파일에 조립한다.
+- Stitch 히어로 섹션을 한 번 더 보정하거나, 현재 산출물을 기준으로 Figma에서 히어로를 재구성한다.
+- `소개`, `서비스`, `FAQ`, `로그인`, `회원가입` 페이지를 Stitch로 생성하고 검토한다.
+- 홈/하위 페이지 구조가 안정화되면 구현 단계용 태스크와 TDD 순서를 분해한다.
+- STT-TTS 데모 구현 범위와 Playwright 핵심 사용자 여정을 구현 가능한 수준으로 더 구체화한다.
 
 ## Working Tree Notes
-- 현재 저장소는 운영 문서와 메모리, 작업일지 위주 상태다.
-- 애플리케이션 코드, 디자인 산출물, 테스트 스위트는 아직 생성되지 않았다.
-- 홈페이지 기획은 `$socrates`, 페이지 작성은 `stitch`, 이후 페이지 구조와 프레임 정리는 `figma`를 사용하는 흐름으로 운영한다.
-- 오늘 Phase 0에서 `Velora Voice` 임시명, 홈/소개/서비스/FAQ/로그인/회원가입 범위, STT-TTS 데모 흐름이 정리됐다.
+- 저장소에는 기획 문서, Stitch 프롬프트, Stitch 산출물, Figma 조립 가이드, 생성 스크립트가 추가된 상태다.
+- 현재 가장 usable한 Stitch 산출물은 `home-demo-v2`, `home-values-features`, `home-proof`, `home-bottom`이며, `hero`는 여전히 비주얼 카드 쪽으로 드리프트가 남아 있다.
+- Stitch는 전체 홈을 한 번에 만들기보다 섹션 단위로 나누어 생성하는 전략이 더 적합하다.
+- Figma 플러그인은 설치만으로 충분하지 않았고, 커넥터 접근과 새 Codex 세션이 필요했다.
 
 ## Supervisor Guidance
 - 사용자를 중계자로 쓰지 않는다.
-- 사용자의 특별한 지시가 없으면 감독관이 세 에이전트에게 직접 지시한다.
-- 결과가 승인 기준을 만족하면 감독관이 다음 라운드를 직접 이어간다.
-- 홈페이지 구현은 위임 중심으로 운영하고, 감독관은 판단과 통합에 집중한다.
-- Phase 0에서는 `$socrates` 스킬 원칙으로 작업 흐름을 완전히 이해할 때까지 상세 질문을 이어간다.
+- 사용자의 특별한 지시가 없으면 감독관이 직접 에이전트나 도구 체인을 이어간다.
+- 섹션 단위 Stitch 결과를 무리하게 승인하지 말고, 재사용 가능한 섹션만 선택해 Figma에서 조립한다.
+- 구현 단계로 넘어가기 전에 홈/하위 페이지 IA와 주요 화면 구조를 먼저 고정한다.

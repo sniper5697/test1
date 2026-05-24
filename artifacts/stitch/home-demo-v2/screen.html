@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora Voice - 실시간 음성 데모</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-sans/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .waveform-bar {
+            animation: bounce 1.2s ease-in-out infinite;
+        }
+        .waveform-bar:nth-child(even) { animation-delay: -0.6s; }
+        .waveform-bar:nth-child(3n) { animation-delay: -0.4s; }
+        .waveform-bar:nth-child(4n) { animation-delay: -0.8s; }
+        .waveform-bar:nth-child(5n) { animation-delay: -0.2s; }
+        
+        @keyframes bounce {
+            0%, 100% { height: 10%; }
+            50% { height: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#0b1c30",
+                "on-secondary-fixed": "#131b2e",
+                "on-surface-variant": "#424754",
+                "on-primary-fixed": "#001a42",
+                "surface": "#f8f9ff",
+                "on-tertiary-fixed": "#191c1e",
+                "inverse-surface": "#213145",
+                "secondary": "#565e74",
+                "secondary-fixed-dim": "#bec6e0",
+                "on-surface": "#0b1c30",
+                "on-error-container": "#93000a",
+                "primary-fixed-dim": "#adc6ff",
+                "surface-tint": "#005ac2",
+                "surface-container-low": "#eff4ff",
+                "surface-bright": "#f8f9ff",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#dae2fd",
+                "surface-variant": "#d3e4fe",
+                "on-primary-fixed-variant": "#004395",
+                "surface-container-high": "#dce9ff",
+                "on-tertiary-fixed-variant": "#444749",
+                "error-container": "#ffdad6",
+                "on-primary-container": "#fefcff",
+                "inverse-on-surface": "#eaf1ff",
+                "tertiary-fixed-dim": "#c4c7c9",
+                "primary-container": "#2170e4",
+                "on-tertiary-container": "#fbfdff",
+                "tertiary-fixed": "#e0e3e5",
+                "on-secondary-container": "#5c647a",
+                "secondary-container": "#dae2fd",
+                "primary": "#0058be",
+                "error": "#ba1a1a",
+                "inverse-primary": "#adc6ff",
+                "tertiary": "#595c5e",
+                "on-secondary": "#ffffff",
+                "primary-fixed": "#d8e2ff",
+                "on-secondary-fixed-variant": "#3f465c",
+                "outline-variant": "#c2c6d6",
+                "surface-container": "#e5eeff",
+                "surface-dim": "#cbdbf5",
+                "outline": "#727785",
+                "surface-container-highest": "#d3e4fe",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#727577",
+                "background": "#f8f9ff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "container-max": "1280px",
+                "margin-desktop": "48px",
+                "unit": "8px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "label-md": [
+                        "Geist"
+                ],
+                "body-lg": [
+                        "Geist"
+                ],
+                "headline-lg-mobile": [
+                        "Geist"
+                ],
+                "label-sm": [
+                        "Geist"
+                ],
+                "display-lg": [
+                        "Geist"
+                ],
+                "headline-lg": [
+                        "Geist"
+                ],
+                "headline-md": [
+                        "Geist"
+                ],
+                "body-md": [
+                        "Geist"
+                ]
+        },
+        "fontSize": {
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "36px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (Shared Component JSON) -->
+<nav class="bg-surface/60 dark:bg-on-background/60 backdrop-blur-xl fixed top-0 w-full border-b border-white/40 dark:border-outline-variant/20 shadow-sm z-50">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-on-background dark:text-inverse-on-surface">Velora Voice</div>
+<div class="hidden md:flex space-x-gutter">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 font-body-md text-body-md font-bold border-b-2 border-primary" href="#">제품</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 font-body-md text-body-md" href="#">솔루션</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 font-body-md text-body-md" href="#">가격</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary font-body-md text-body-md" href="#">데모</a>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:scale-102 hover:backdrop-blur-2xl transition-all duration-200 shadow-sm hidden md:block">시작하기</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Section Header -->
+<div class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-on-background mb-4">실시간 음성 데모</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">Velora Voice의 지연 없는 실시간 AI 음성 인식을 직접 경험해 보세요. 어떤 환경에서도 선명하게 당신의 목소리를 이해합니다.</p>
+</div>
+<!-- Premium Demo Panel -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl border border-white/40 rounded-xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(11,28,48,0.04)] relative">
+<!-- Panel Header (Glassmorphic) -->
+<div class="bg-surface/60 backdrop-blur-md border-b border-white/40 px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">graphic_eq</span>
+<span class="font-headline-md text-headline-md text-on-background font-semibold tracking-tight">Velora Interactive</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider">Live</span>
+</div>
+</div>
+<!-- Panel Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<!-- Left Sidebar: Status -->
+<div class="col-span-1 lg:col-span-3 border-r border-outline-variant/20 p-6 bg-surface/30">
+<h3 class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-6">상태 모니터링</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined fill">mic</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">마이크 권한</p>
+<p class="font-body-md text-body-md text-primary mt-1">허용됨 (Active)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">hearing</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">AI 상태</p>
+<p class="font-body-md text-body-md text-secondary mt-1">음성 인식 중...</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-surface-variant p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">응답 지연</p>
+<p class="font-body-md text-body-md text-secondary mt-1">12ms</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Center: Waveform Visualization -->
+<div class="col-span-1 lg:col-span-6 p-8 flex flex-col items-center justify-center min-h-[400px] relative overflow-hidden">
+<!-- Decorative Background Gradients -->
+<div class="absolute inset-0 bg-gradient-to-b from-surface-tint/5 to-transparent pointer-events-none"></div>
+<div class="h-32 flex items-center justify-center gap-1.5 w-full max-w-md px-8 z-10">
+<!-- Simulated Waveform Bars -->
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 20%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 40%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 80%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 30%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 90%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 50%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 100%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 60%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 40%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 80%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 30%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 70%"></div>
+<div class="waveform-bar w-1.5 bg-primary rounded-full" style="height: 20%"></div>
+</div>
+<p class="mt-8 font-body-lg text-body-lg text-secondary text-center">말씀해 주세요. Velora가 듣고 있습니다.</p>
+</div>
+<!-- Right Sidebar: Transcript -->
+<div class="col-span-1 lg:col-span-3 border-l border-outline-variant/20 p-6 bg-surface/30 flex flex-col h-full max-h-[500px]">
+<h3 class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-6">실시간 대화 내역</h3>
+<div class="flex-grow overflow-y-auto space-y-4 pr-2">
+<!-- AI Message -->
+<div class="flex flex-col gap-1 items-start">
+<span class="font-label-sm text-label-sm text-secondary ml-2">Velora AI</span>
+<div class="bg-surface-variant text-on-background px-4 py-3 rounded-2xl rounded-tl-sm font-body-md text-body-md max-w-[90%] shadow-sm">
+                                안녕하세요! 오늘 회의 일정을 확인해 드릴까요?
+                            </div>
+</div>
+<!-- User Message -->
+<div class="flex flex-col gap-1 items-end mt-4">
+<span class="font-label-sm text-label-sm text-secondary mr-2">사용자</span>
+<div class="bg-primary text-on-primary px-4 py-3 rounded-2xl rounded-tr-sm font-body-md text-body-md max-w-[90%] shadow-sm">
+                                네, 오후 3시 마케팅 팀 미팅 자료 준비됐는지 물어봐줘.
+                            </div>
+</div>
+<!-- Real-time typing indicator -->
+<div class="flex flex-col gap-1 items-start mt-4">
+<span class="font-label-sm text-label-sm text-secondary ml-2">Velora AI</span>
+<div class="bg-surface-variant text-on-background px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+<span class="w-1.5 h-1.5 bg-secondary rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Playback/Progress Bar -->
+<div class="bg-surface-container-high/50 border-t border-outline-variant/20 p-4">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-outline-variant/50 shadow-sm text-primary hover:scale-105 transition-transform">
+<span class="material-symbols-outlined fill">pause</span>
+</button>
+<div class="flex-grow bg-outline-variant/30 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full w-1/3 relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow border border-primary"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono">00:12 / 01:00</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Anchor (Shared Component JSON) -->
+<footer class="bg-on-background dark:bg-on-background w-full py-12 border-t border-outline/20 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="font-headline-md text-headline-md text-primary-fixed opacity-80 hover:opacity-100 transition-opacity">Velora Voice</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed-dim flex gap-6">
+<a class="hover:text-primary-fixed transition-colors" href="#">이용약관</a>
+<a class="hover:text-primary-fixed transition-colors" href="#">개인정보처리방침</a>
+<a class="hover:text-primary-fixed transition-colors" href="#">고객지원</a>
+</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed-dim">
+                © 2024 Velora Voice. 모든 권리 보유.
+            </div>
+</div>
+</footer>
+</body></html>

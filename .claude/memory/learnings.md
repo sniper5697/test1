@@ -40,3 +40,30 @@
 - 1차 페이지 범위는 `홈 + 소개 + 서비스 + FAQ + 로그인 + 회원가입`이다.
 - 소개 페이지는 `회사 소개`, `비전`, `연락처`만으로 충분하며 별도 문의 페이지는 1차에서 제외할 수 있다.
 - 디자인 방향은 `ElevenLabs`의 톤/레이아웃, `셀바스AI`의 정보 배치, `유리질감`, `부드러운 모션`, 비블랙톤, 비템플릿 감성으로 정리됐다.
+
+## 2026-05-24
+
+### Stitch Authentication
+- Stitch는 API key만으로 도구 목록 조회는 가능하지만, 실제 `create_project`/생성 계열은 OAuth access token이 필요했다.
+- 이 환경에서는 `gcloud auth application-default login`과 quota project 설정이 필요했고, 실제 사용 프로젝트는 `cbk-02`로 정리됐다.
+- Stitch SDK는 환경변수 우선순위 때문에 `STITCH_API_KEY`가 남아 있으면 OAuth 경로를 방해할 수 있었고, 이를 우회해 명시적 클라이언트 생성 경로를 쓰는 편이 안정적이었다.
+
+### Stitch Generation Strategy
+- 홈 전체 페이지를 한 번에 생성하는 접근은 품질이 불안정했다.
+- 실제로는 `blank/unusable -> partial homepage -> hero visual asset drift` 패턴이 나왔다.
+- 같은 목표라도 `hero`, `values/features`, `demo`, `proof`, `bottom`처럼 섹션 단위로 쪼개면 훨씬 안정적으로 usable한 결과를 얻을 수 있었다.
+- 현재 가장 좋은 기준 산출물은 `home-demo-v2`이며, `values/features`, `proof`, `bottom`도 구현 참고용으로 충분하다.
+
+### Figma Runtime Reality
+- Figma는 데스크톱 앱 설치와 플러그인 설치만으로는 충분하지 않았다.
+- 플러그인은 자체 MCP 서버를 내장하지 않았고, 앱 커넥터 접근 상태가 `isAccessible: true`가 되어야 도구가 실제 세션에 노출됐다.
+- 커넥터 연결이나 권한이 바뀐 뒤에는 기존 세션이 아니라 새 Codex 세션에서 다시 확인해야 했다.
+- 도구가 실제로 살아 있는지 확인하는 가장 좋은 신호는 `_whoami` 성공이다.
+
+### Reusable Setup Pattern
+- 반복되는 설치/인증/트러블슈팅은 스킬로 캡슐화하는 편이 낫다.
+- `stitch-setup`과 `figma-setup`처럼 설치 여부 확인 -> 부족한 의존성 자동 설치 -> 사용자가 필요한 인증 단계만 질문 -> 최종 probe 검증 순서로 묶으면 다음 세션 비용이 크게 줄어든다.
+
+### Config Safety
+- `~/.codex/config.toml`에 transport 없는 `[mcp_servers.codex_apps]` 블록을 넣으면 Codex 자체가 깨질 수 있다.
+- MCP startup timeout 문제를 임의 설정으로 덮기 전에 현재 버전의 설정 형식을 먼저 확인해야 한다.

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora Voice - 활용 분야</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "tertiary": "#904900",
+                        "primary-container": "#6063ee",
+                        "surface-container": "#efecf8",
+                        "secondary-container": "#d0e1fb",
+                        "surface-bright": "#fcf8ff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-secondary-container": "#54647a",
+                        "on-surface-variant": "#464554",
+                        "on-secondary-fixed": "#0b1c30",
+                        "primary-fixed": "#e1e0ff",
+                        "tertiary-container": "#b55d00",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface-tint": "#494bd6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-container-high": "#e9e6f3",
+                        "on-surface": "#1b1b23",
+                        "on-error": "#ffffff",
+                        "outline": "#767586",
+                        "surface-variant": "#e4e1ed",
+                        "secondary": "#505f76",
+                        "on-primary-fixed": "#07006c",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "background": "#fcf8ff",
+                        "on-background": "#1b1b23",
+                        "inverse-primary": "#c0c1ff",
+                        "on-tertiary-fixed": "#301400",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-surface": "#303038",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e4e1ed",
+                        "surface": "#fcf8ff",
+                        "surface-container-low": "#f5f2fe",
+                        "inverse-on-surface": "#f2effb",
+                        "surface-dim": "#dbd8e4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-primary": "#ffffff",
+                        "primary": "#4648d4",
+                        "outline-variant": "#c7c4d7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xxl": "80px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "title-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "display-lg-mobile": ["Inter", "sans-serif"],
+                        "headline-md-mobile": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "1.5", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md-mobile": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-surface-variant/10 shadow-[0_20px_50px_rgba(80,95,118,0.04)]">
+<div class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<a class="text-title-lg font-display-lg font-extrabold tracking-tight text-primary" href="#">Velora Voice</a>
+<div class="hidden md:flex space-x-lg">
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 ease-in-out" href="#">Technology</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 ease-in-out" href="#">Demo</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">활용 분야</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 ease-in-out" href="#">FAQ</a>
+</div>
+<div class="hidden md:flex space-x-md items-center">
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-all duration-300 ease-in-out" href="#">로그인</a>
+<a class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md text-label-md hover:shadow-[0_4px_14px_0_rgba(96,99,238,0.39)] transition-all duration-300 ease-in-out" href="#">시작하기</a>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-[120px] pb-xxl">
+<section class="px-gutter max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="text-center mb-xxl max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-md">
+                    활용 분야
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Velora Voice의 고도화된 음성 AI 기술이 만드는 무한한 가능성을 경험하세요.
+                </p>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Card 1: 고객센터 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-lg border border-surface-variant/50 shadow-[0_4px_24px_rgba(100,116,139,0.03)] hover:shadow-[0_12px_40px_rgba(100,116,139,0.08)] transition-all duration-300 overflow-hidden flex flex-col justify-between h-[320px]">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all duration-500"></div>
+<div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-2xl icon-fill" data-icon="support_agent">support_agent</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm group-hover:text-primary transition-colors duration-300">고객센터</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            AI 상담원을 통한 24/7 끊김 없는 고객 응대와 업무 효율화
+                        </p>
+</div>
+<div class="mt-auto flex justify-end">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: AI 교육 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-lg border border-surface-variant/50 shadow-[0_4px_24px_rgba(100,116,139,0.03)] hover:shadow-[0_12px_40px_rgba(100,116,139,0.08)] transition-all duration-300 overflow-hidden flex flex-col justify-between h-[320px]">
+<div class="absolute -left-10 -bottom-10 w-40 h-40 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-all duration-500"></div>
+<div>
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-tertiary text-2xl icon-fill" data-icon="school">school</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm group-hover:text-primary transition-colors duration-300">AI 교육</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            자연스러운 대화형 학습으로 실전 같은 외국어 및 지식 습득 환경 제공
+                        </p>
+</div>
+<div class="mt-auto flex justify-end">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3: 스마트 홈 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-lg border border-surface-variant/50 shadow-[0_4px_24px_rgba(100,116,139,0.03)] hover:shadow-[0_12px_40px_rgba(100,116,139,0.08)] transition-all duration-300 overflow-hidden flex flex-col justify-between h-[320px]">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all duration-500"></div>
+<div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-2xl icon-fill" data-icon="home_iot_device">home_iot_device</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm group-hover:text-primary transition-colors duration-300">스마트 홈</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            가전과 조명을 목소리만으로 직관적으로 제어하는 진화된 주거 공간
+                        </p>
+</div>
+<div class="mt-auto flex justify-end">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4: 게임 인터랙션 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-lg border border-surface-variant/50 shadow-[0_4px_24px_rgba(100,116,139,0.03)] hover:shadow-[0_12px_40px_rgba(100,116,139,0.08)] transition-all duration-300 overflow-hidden flex flex-col justify-between h-[320px]">
+<div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-all duration-500"></div>
+<div>
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-secondary text-2xl icon-fill" data-icon="sports_esports">sports_esports</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm group-hover:text-primary transition-colors duration-300">게임 인터랙션</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            캐릭터와 실시간으로 소통하며 몰입감을 높이는 차세대 게임 경험
+                        </p>
+</div>
+<div class="mt-auto flex justify-end">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter py-xxl grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<a class="text-headline-md font-display-lg font-bold text-primary mb-md inline-block" href="#">Velora Voice</a>
+<p class="text-on-surface-variant font-body-md text-body-md mt-sm">
+                    © 2024 Velora Voice. All rights reserved. Innovative Voice AI Technology.
+                </p>
+</div>
+<div class="flex gap-lg md:justify-end items-end flex-wrap">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary hover:underline underline-offset-4 transition-all" href="#">개인정보처리방침</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary hover:underline underline-offset-4 transition-all" href="#">이용약관</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary hover:underline underline-offset-4 transition-all" href="#">고객지원</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary hover:underline underline-offset-4 transition-all" href="#">채용</a>
+</div>
+</div>
+</footer>
+</body></html>

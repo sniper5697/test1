@@ -4,7 +4,7 @@
 - 프로젝트명: `Job1`
 - 프로젝트 목적: 홈페이지 제작
 - 시작일: 2026-05-22
-- 현재 단계: Phase 0 Discovery 진행 중
+- 현재 단계: Phase 2 Design 진행 중
 
 ## 운영 구조
 - 협업 패턴: 사용자 -> Codex 감독관 -> 작업 에이전트 3명 -> Codex 감독관
@@ -23,6 +23,12 @@
 - Design Framing: `stitch`로 구성한 웹페이지를 기준으로 `figma`에서 구조와 프레임 정리
 - Verification: Playwright 직접 디버깅 및 E2E 검증
 - Release: CI/CD 자동화 파이프라인 통과 후 배포 판단
+
+## 현재 구현/설계 상태
+- `docs/planning/` 문서 3종으로 목표, 페이지 역할, 빌드 범위를 정리했다.
+- 홈 페이지는 전체 페이지 단위와 섹션 단위 Stitch 생성을 모두 시도했다.
+- 현재 전략은 `전체 홈 한 번에 생성`이 아니라 `섹션 단위 생성 -> Figma 조립`이다.
+- Figma 조립 기준은 `docs/figma/home-frame-assembly.md`에 정리돼 있다.
 
 ## 품질 기준
 - 모든 기능은 TDD 사이클을 따른다.
@@ -49,13 +55,16 @@
 - 서비스 페이지는 `기능 요약`, `사용 흐름`, `기술 강점`, `적용 분야`, `데모 CTA`를 포함한다.
 - FAQ는 홈 요약과 별도 페이지 둘 다 포함한다.
 - 디자인 방향은 `ElevenLabs`의 톤/레이아웃, `셀바스AI`의 정보 배치, `유리질감`, `부드러운 모션`, 비블랙톤, 비템플릿 감성이다.
+- Stitch는 OAuth + quota project 기반으로 사용한다.
+- Stitch setup은 `~/.codex/skills/stitch-setup/` 스킬로 재사용 가능하다.
+- Figma setup은 `~/.codex/skills/figma-setup/` 스킬로 재사용 가능하다.
+- 홈 기준 usable한 Stitch 섹션은 `home-demo-v2`, `home-values-features`, `home-proof`, `home-bottom`이다.
+- `hero`는 아직 웹 히어로보다 비주얼 카드 성향이 강하므로 Figma에서 재구성 가능성을 열어둔다.
 - compact 시 보존: 프로젝트 아키텍처 개요, 네이밍 규칙, 중요 결정, 현재 TODO, 보안/성능 제약
 - compact 시 폐기: 실패한 실험, 반복 디버그 로그, 초기 브레인스토밍
 
 ## 현재 TODO
-- Phase 0 결과를 핵심 목표/화면 구조로 정리
-- 홈페이지 요구사항과 페이지 구조 확정
-- 필요 시 `docs/planning/` 기획 문서 생성
-- 홈 섹션 구조와 페이지별 역할 정의
-- `stitch` 제작 범위 확정
-- 테스트 전략 및 Playwright 핵심 시나리오 정의
+- 홈 프레임을 Figma에 실제로 조립
+- `소개`, `서비스`, `FAQ`, `로그인`, `회원가입` Stitch 생성 및 검토
+- 구현 단계용 기능 분해와 TDD 순서 확정
+- STT-TTS 데모 구현 범위와 Playwright 핵심 시나리오를 코드 수준으로 구체화

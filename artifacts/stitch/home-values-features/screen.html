@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora Voice - Core Values &amp; Features</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b3c5ff",
+                        "background": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#191c1e",
+                        "inverse-primary": "#b3c5ff",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#f8f7ff",
+                        "on-tertiary-container": "#f6f8fa",
+                        "inverse-surface": "#213145",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#c2c6d8",
+                        "primary": "#0050cb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004a77",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#cfe5ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#565a5b",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary-container": "#0066ff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#98cbff",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#00a2fd",
+                        "tertiary-container": "#6f7274",
+                        "primary-fixed": "#dae1ff",
+                        "on-secondary-fixed": "#001d33",
+                        "on-secondary-container": "#003558",
+                        "on-surface-variant": "#424656",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-tint": "#0054d6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "outline": "#727687",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface": "#0b1c30",
+                        "on-primary-fixed": "#001849",
+                        "secondary": "#00629d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "24px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-xl": "64px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "section-py": "120px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "title-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        "glass": "0 20px 40px rgba(0,102,255,0.05)",
+                        "glass-hover": "0 30px 60px rgba(0,102,255,0.1)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .font-geist {
+            font-family: 'Geist', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid #F1F5F9;
+        }
+        .glass-icon-wrapper {
+            background: rgba(0, 102, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<main class="w-full">
+<!-- Core Values Section -->
+<section class="py-section-py px-margin-desktop md:px-margin-desktop max-w-container-max mx-auto relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+<div class="text-center mb-stack-xl max-w-3xl mx-auto">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest block mb-stack-sm">미래를 앞당기는 Velora의 철학</span>
+<h2 class="font-display-lg text-display-lg text-on-surface">핵심 가치</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Value 1 -->
+<div class="flex flex-col items-center text-center p-stack-lg transition-transform duration-300 hover:-translate-y-2 group">
+<div class="w-16 h-16 rounded-full glass-icon-wrapper flex items-center justify-center mb-stack-md text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[32px]">check_circle</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-sm">정확도</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">99.9%의 완벽함으로 데이터의 가치를 실현합니다.</p>
+</div>
+<!-- Value 2 -->
+<div class="flex flex-col items-center text-center p-stack-lg transition-transform duration-300 hover:-translate-y-2 group">
+<div class="w-16 h-16 rounded-full glass-icon-wrapper flex items-center justify-center mb-stack-md text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[32px]">bolt</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-sm">속도</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">밀리초 단위의 처리가 만드는 압도적인 생산성.</p>
+</div>
+<!-- Value 3 -->
+<div class="flex flex-col items-center text-center p-stack-lg transition-transform duration-300 hover:-translate-y-2 group">
+<div class="w-16 h-16 rounded-full glass-icon-wrapper flex items-center justify-center mb-stack-md text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[32px]">sync</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-sm">실시간성</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">멈춤 없는 연결이 가져오는 완벽한 동기화.</p>
+</div>
+</div>
+</section>
+<!-- Key Features Section -->
+<section class="py-section-py px-margin-desktop md:px-margin-desktop max-w-container-max mx-auto relative">
+<div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary-container/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+<div class="mb-stack-xl max-w-3xl">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest block mb-stack-sm">진화된 기술이 만드는 변화</span>
+<h2 class="font-display-lg text-display-lg text-on-surface">주요 기능</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Feature 1 (Bento Large) -->
+<div class="md:col-span-8 glass-card rounded-card p-stack-lg shadow-glass hover:shadow-glass-hover transition-all duration-300 group flex flex-col justify-end min-h-[320px] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-lowest/50 to-transparent z-0"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-stack-md text-primary">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">실시간 응답</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">즉각적인 피드백으로 대화의 맥락을 놓치지 않습니다.</p>
+</div>
+</div>
+<!-- Feature 2 (Bento Small Top) -->
+<div class="md:col-span-4 glass-card rounded-card p-stack-lg shadow-glass hover:shadow-glass-hover transition-all duration-300 flex flex-col justify-between min-h-[320px]">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-stack-md text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-sm">높은 정확도</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">복잡한 환경에서도 선명한 결과를 보장합니다.</p>
+</div>
+</div>
+<!-- Feature 3 (Bento Full Width Bottom) -->
+<div class="md:col-span-12 glass-card rounded-card p-stack-lg shadow-glass hover:shadow-glass-hover transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-gutter">
+<div class="flex-1">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-stack-md text-primary">
+<span class="material-symbols-outlined">record_voice_over</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">자연스러운 음성 인터랙션</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">기계를 넘어 사람과 같은 대화 경험을 선사합니다. 감정과 뉘앙스까지 포착하는 혁신적인 음성 기술.</p>
+</div>
+<div class="w-full md:w-1/3 h-[200px] bg-surface-container-low rounded-xl relative overflow-hidden flex items-center justify-center border border-outline-variant/20">
+<!-- Placeholder for conceptual visualization -->
+<div class="flex items-center gap-1">
+<div class="w-1 h-8 bg-primary rounded-full animate-[bounce_1s_infinite]"></div>
+<div class="w-1 h-12 bg-primary/80 rounded-full animate-[bounce_1.2s_infinite]"></div>
+<div class="w-1 h-16 bg-primary/60 rounded-full animate-[bounce_1.4s_infinite]"></div>
+<div class="w-1 h-12 bg-primary/80 rounded-full animate-[bounce_1.1s_infinite]"></div>
+<div class="w-1 h-8 bg-primary rounded-full animate-[bounce_1.3s_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>
