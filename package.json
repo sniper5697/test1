@@ -3,20 +3,38 @@
   "version": "1.0.0",
   "description": "Velora Voice planning and build workspace",
   "type": "module",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "npm run test:unit",
+    "test:unit": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
     "stitch:screen": "node scripts/generate-stitch-screen.mjs",
     "stitch:homepage": "node scripts/generate-homepage-stitch.mjs",
-    "stitch:smoke": "node scripts/stitch-smoke.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "stitch:smoke": "node scripts/stitch-smoke.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/stitch-sdk": "^0.3.5"
+    "@google/stitch-sdk": "^0.3.5",
+    "next": "^16.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "jsdom": "^27.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
   }
 }

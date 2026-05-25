@@ -67,3 +67,22 @@
 ### Config Safety
 - `~/.codex/config.toml`에 transport 없는 `[mcp_servers.codex_apps]` 블록을 넣으면 Codex 자체가 깨질 수 있다.
 - MCP startup timeout 문제를 임의 설정으로 덮기 전에 현재 버전의 설정 형식을 먼저 확인해야 한다.
+
+## 2026-05-25
+
+### Delegation Reality
+- 구현 단계에 들어가면 감독관이 직접 코드를 쓰더라도, 라운드 기준과 승인/반려는 Agent G/K/C 회수 결과를 먼저 고정한 뒤 진행하는 편이 안정적이다.
+- 특히 verification gate는 Agent C의 증거 요구를 먼저 받아두면 E2E와 CI를 뒤에서 덧대지 않아도 된다.
+
+### Voice Demo Pattern
+- browser-native v1 음성 데모는 `SpeechRecognition + speechSynthesis + canned reply` 조합으로 충분히 usable하다.
+- 실제 브라우저 E2E는 real mic/audio보다 `Playwright fake media + addInitScript mock voice APIs` 경로가 훨씬 안정적이다.
+- `speechSynthesis`는 객체 전체 교체보다 메서드 패치가 브라우저 호환성 면에서 더 안전했다.
+
+### CI Shape
+- voice-demo E2E가 생긴 뒤에는 단일 CI job보다 `check` / `e2e` 2-job 구조가 더 적합하다.
+- Playwright artifact는 실패 때만 남기기보다 `always()`가 회귀 디버깅에 유리하다.
+
+### Figma Parity
+- Figma tool이 없는 세션에서도 설계 작업을 완전히 멈출 필요는 없다.
+- 구현 상태 screenshot 세트와 handoff 문서를 만들어 두면, 다음 세션에서 Figma tool이 보일 때 바로 조립을 이어갈 수 있다.

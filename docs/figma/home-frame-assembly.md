@@ -31,6 +31,11 @@
   - [artifacts/stitch/home-values-features/screen.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/stitch/home-values-features/screen.png)
 - Demo reference:
   - [artifacts/stitch/home-demo-v2/screen.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/stitch/home-demo-v2/screen.png)
+  - [artifacts/voice-demo-states/idle.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/voice-demo-states/idle.png)
+  - [artifacts/voice-demo-states/listening.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/voice-demo-states/listening.png)
+  - [artifacts/voice-demo-states/thinking.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/voice-demo-states/thinking.png)
+  - [artifacts/voice-demo-states/speaking.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/voice-demo-states/speaking.png)
+  - [artifacts/voice-demo-states/error.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/voice-demo-states/error.png)
 - Proof reference:
   - [artifacts/stitch/home-proof/screen.png](/Users/macminim2-choi/PROJECT/Job1/artifacts/stitch/home-proof/screen.png)
 - Bottom reference:
@@ -54,7 +59,8 @@
   - `주요 기능`
 
 ### 3. Demo
-- Use `home-demo-v2` as the strongest source
+- Use `home-demo-v2` as the strongest source for base layout
+- Use `artifacts/voice-demo-states/*.png` as the source of truth for dynamic states
 - Keep:
   - waveform center panel
   - left-side state summary
@@ -62,6 +68,12 @@
 - Replace extra nav or drift labels if they exist
 - Keep title:
   - `실시간 음성 데모`
+- Build the interactive state family in Figma, not only the idle snapshot:
+  - `Demo/Idle`
+  - `Demo/Listening`
+  - `Demo/Thinking`
+  - `Demo/Speaking`
+  - `Demo/Error`
 
 ### 4. Proof
 - Use `활용 분야` card grid from current Stitch result
@@ -98,6 +110,10 @@
    - primary button
    - glass card
    - section title
+   - voice status pill
+   - waveform bar set
+   - voice transcript panel
+   - voice reply panel
    - FAQ row
    - footer link group
 
