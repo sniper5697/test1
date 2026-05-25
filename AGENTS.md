@@ -1,3 +1,9 @@
+## 무한 반복 운영 규칙
+
+- 사용자가 정말로 기대하는 작업 상황 흐름은 `사용자 -> 코덱스팀 -> 클로드팀 -> 클로드팀 -> 코덱스팀 -> 클로드팀 -> 코덱스팀 -> ...`의 무한 반복이다.
+- 이 반복은 사용자가 직접 중단할 때만 멈춘다.
+- 단, 실발화가 필요할 때는 예외로 본다.
+
 ## 프로젝트 목적
 
 - 이 프로젝트의 목적은 홈페이지를 만드는 것이다.
@@ -129,3 +135,9 @@
 
 - Always preserve: Project architecture overview, key naming conventions, important decisions, current TODO, security & performance constraints
 - Discard: failed experiments, repetitive debug logs, early brainstorming
+
+## 무한 반복 운영 규칙
+
+- 사용자가 정말로 기대하는 작업 상황 흐름은 `사용자 -> 코덱스팀 -> 클로드팀 -> 클로드팀 -> 코덱스팀 -> 클로드팀 -> 코덱스팀 -> ...`의 무한 반복이다.
+- 이 반복은 사용자가 직접 중단할 때만 멈춘다.
+- 단, 실발화가 필요할 때는 예외로 본다.

@@ -2,7 +2,10 @@
 
 ## Status
 - Stitch section references are ready.
-- This document defines how to assemble the homepage in Figma once `create_new_file` / `use_figma` become callable.
+- Homepage assembly is already present in Figma.
+- Voice demo parity is also now present as a separate live frame:
+  - `Voice Demo State Parity` (`12:2`)
+- This document remains the source of truth for future refinement, not just initial assembly.
 
 ## Frame Goal
 - Build one desktop homepage frame for `Velora Voice`

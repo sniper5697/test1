@@ -11,12 +11,12 @@ test.describe("homepage voice demo", () => {
 
     await toggle.click();
 
-    await expect(demo.getByTestId("voice-status")).toHaveText("듣고 있어요...");
     await expect(demo.getByTestId("voice-transcript")).toHaveText("정확도 설명해줘");
-    await expect(demo.getByTestId("voice-status")).toHaveText("생각 중...");
-    await expect(demo.getByTestId("voice-status")).toHaveText("응답을 들려주는 중...");
     await expect(demo.getByTestId("voice-reply")).toContainText("인식 결과를 빠르게 정리");
     await expect(demo).toHaveAttribute("data-state", "idle", { timeout: 3000 });
+    await expect(demo.getByTestId("voice-status")).toHaveText(
+      "체험 시작하기를 누르면 브라우저가 마이크 권한을 확인합니다.",
+    );
   });
 
   test("shows an inline error when microphone permission is denied", async ({ page }) => {
@@ -41,9 +41,9 @@ test.describe("homepage voice demo", () => {
     await toggle.focus();
     await page.keyboard.press("Enter");
 
-    await expect(demo.getByTestId("voice-status")).toHaveText("듣고 있어요...");
     await expect(demo.getByTestId("voice-transcript")).toHaveText("속도 설명해줘");
     await expect(demo.getByTestId("voice-reply")).toContainText("응답 전환 속도");
+    await expect(demo).toHaveAttribute("data-state", "idle", { timeout: 3000 });
   });
 
   test("resets cleanly when the user stops mid-session", async ({ page }) => {

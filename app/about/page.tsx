@@ -1,12 +1,15 @@
-import { SiteFooter } from "../../components/SiteFooter";
-import { SiteHeader } from "../../components/SiteHeader";
+import type { Metadata } from "next";
 import { aboutHighlights, aboutPrinciples, contactItems } from "../../lib/page-content";
+
+export const metadata: Metadata = {
+  title: "소개 | Velora Voice",
+  description:
+    "소통의 가치를 더하는 Velora Voice의 미션과, 음성 경험을 제품 수준으로 끌어올리는 팀의 기준을 소개합니다.",
+};
 
 export default function AboutPage() {
   return (
-    <main className="page-shell">
-      <SiteHeader />
-
+    <div className="page-shell">
       <section className="section-card">
         <p className="eyebrow">회사 소개</p>
         <h1 className="title-md">Velora Voice를 만든 팀의 방향과 기준</h1>
@@ -94,7 +97,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

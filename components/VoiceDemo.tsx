@@ -21,7 +21,8 @@ const waveGradient: Record<VoiceDemoState, string> = {
 };
 
 export function VoiceDemo() {
-  const { error, reply, start, state, statusText, stop, transcript } = useVoiceDemo();
+  const { error, errorKind, reply, start, state, statusText, stop, transcript } =
+    useVoiceDemo();
   const isBusy = state !== "idle" && state !== "error";
 
   return (
@@ -183,17 +184,30 @@ export function VoiceDemo() {
             </div>
           </div>
           {error && (
-            <p
+            <div
               role="alert"
               style={{
                 marginTop: 18,
-                marginBottom: 0,
                 color: "#b34835",
                 lineHeight: 1.7,
               }}
             >
-              {error}
-            </p>
+              <p style={{ marginTop: 0, marginBottom: errorKind === "unsupported" ? 10 : 0 }}>
+                {error}
+              </p>
+              {errorKind === "unsupported" && (
+                <p
+                  style={{
+                    marginTop: 0,
+                    marginBottom: 0,
+                    color: "#6a7285",
+                    fontSize: 14,
+                  }}
+                >
+                  호환 브라우저에서 다시 열면 실시간 마이크 체험을 바로 이어갈 수 있습니다.
+                </p>
+              )}
+            </div>
           )}
         </article>
       </div>

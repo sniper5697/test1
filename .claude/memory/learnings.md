@@ -86,3 +86,24 @@
 ### Figma Parity
 - Figma tool이 없는 세션에서도 설계 작업을 완전히 멈출 필요는 없다.
 - 구현 상태 screenshot 세트와 handoff 문서를 만들어 두면, 다음 세션에서 Figma tool이 보일 때 바로 조립을 이어갈 수 있다.
+
+### Release Smoke Gate
+- production smoke gate는 기존 dev E2E를 대체하지 말고 `@prod-smoke` 태그로 분리하는 편이 안전하다.
+- built app 기준 검증은 `next build + next start`를 직접 띄워야 하고, 사용자가 보고 있을 수 있는 dev 서버와 충돌하지 않게 별도 포트를 쓰는 편이 낫다.
+- smoke에서는 전체 회귀 대신 hero/CTA/`#demo`/핵심 route heading/console error 0 같은 최소 surface만 확인해야 flaky risk가 낮다.
+
+### Release Policy Hardening
+- branch protection 같은 운영 정책은 저장소 파일만으로 완전히 강제되지 않으므로, repo 안에는 `release-policy.md`와 PR template로 기준을 고정하고 실제 GitHub UI 적용은 외부 운영 단계로 분리하는 편이 현실적이다.
+- release 문서에는 required checks, artifact retention day count, rollback target time, env/secret hygiene를 숫자와 절차 수준으로 명시해야 다음 감독관이 그대로 집행할 수 있다.
+
+### Unsupported Browser Fallback
+- browser-native voice demo는 정상 경로만 green이어도 충분하지 않고, `SpeechRecognition` 자체가 없는 브라우저 분기를 unit test로 고정해야 residual risk가 실제로 줄어든다.
+- unsupported 환경에서는 기능 미지원 사실과 권장 브라우저를 함께 보여주는 편이 permission denied와 구분이 명확하다.
+
+### Global Navigation Accessibility
+- 공통 header/footer는 각 페이지에 중복 배치하기보다 `app/layout.tsx`에서 단일 source로 관리하는 편이 landmark, active nav, skip link 검증을 단순하게 만든다.
+- 접근성 smoke에서는 디자인보다 `본문으로 바로가기`의 첫 focus 진입, `main#main-content` 단일성, nav 내부의 단일 `aria-current=\"page\"`가 가장 강한 회귀 방지 포인트였다.
+
+### Route Metadata Hardening
+- Next route metadata를 정확한 문자열로 보장해야 하면 layout template에 기대기보다 각 route가 완전한 title string을 직접 export하는 편이 안정적이다.
+- client page에서 metadata가 필요한 경우 `page.tsx`를 server component로 유지하고 실제 interactive UI를 별도 `*PageClient.tsx`로 분리하는 구조가 가장 단순하다.

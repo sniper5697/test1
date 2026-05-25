@@ -1,14 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqItem } from "../../components/FaqItem";
-import { SiteFooter } from "../../components/SiteFooter";
-import { SiteHeader } from "../../components/SiteHeader";
 import { faqEntries } from "../../lib/page-content";
+
+export const metadata: Metadata = {
+  title: "FAQ | Velora Voice",
+  description:
+    "Velora Voice 데모 전 가장 많이 묻는 질문과 도입 전 확인해야 할 핵심 답변을 빠르게 살펴보세요.",
+};
 
 export default function FaqPage() {
   return (
-    <main className="page-shell">
-      <SiteHeader />
-
+    <div className="page-shell">
       <section className="section-card">
         <p className="eyebrow">FAQ</p>
         <h1 className="title-md">데모 전 가장 많이 묻는 질문을 한 자리에서 정리합니다</h1>
@@ -48,7 +51,6 @@ export default function FaqPage() {
         </Link>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

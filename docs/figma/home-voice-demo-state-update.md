@@ -3,6 +3,14 @@
 ## Goal
 - Reflect the implemented homepage voice demo in Figma so the design file stays aligned with the tested UI.
 
+## Current Figma Status
+- File key: `BHNgq4ZWHg3CyiN2fm5qHh`
+- Page: `Homepage`
+- Live parity root frame now exists:
+  - `Voice Demo State Parity`
+  - node id: `12:2`
+- Desktop and mobile state families were added as real Figma frames.
+
 ## Source of Truth
 - Code:
   - [components/VoiceDemo.tsx](/Users/macminim2-choi/PROJECT/Job1/components/VoiceDemo.tsx)

@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "../components/Hero";
 import { VoiceDemo } from "../components/VoiceDemo";
+
+export const metadata: Metadata = {
+  title: "홈 | Velora Voice",
+  description:
+    "차세대 AI 음성 비서로 비즈니스와 일상을 더 스마트하게 혁신하는 Velora Voice의 실시간 데모를 확인하세요.",
+};
 
 const values = [
   {
@@ -26,33 +33,7 @@ const faqs = [
 
 export default function HomePage() {
   return (
-    <main className="page-shell">
-      <section
-        className="section-card"
-        style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 64, gap: 16, flexWrap: "wrap" }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span
-            aria-hidden="true"
-            style={{
-              width: 16,
-              height: 16,
-              borderRadius: 999,
-              background: "linear-gradient(135deg, #4aa7ff, #1d52d6)",
-              display: "inline-block",
-            }}
-          />
-          <strong>Velora Voice</strong>
-        </div>
-        <nav aria-label="주요 메뉴" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-          <Link href="/service">서비스</Link>
-          <Link href="/about">소개</Link>
-          <Link href="/faq">FAQ</Link>
-          <Link href="/login">로그인</Link>
-          <Link href="/signup">회원가입</Link>
-        </nav>
-      </section>
-
+    <div className="page-shell">
       <Hero />
 
       <section className="section-card" style={{ marginTop: 64 }}>
@@ -111,10 +92,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="section-card" style={{ marginTop: 64, display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
+      <section className="section-card" style={{ marginTop: 64, display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
         <strong>Velora Voice</strong>
         <span className="muted">서비스 · 소개 · FAQ · SNS</span>
-      </footer>
-    </main>
+      </section>
+    </div>
   );
 }

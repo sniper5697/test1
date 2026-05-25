@@ -10,7 +10,8 @@
     "test": "npm run test:unit",
     "test:unit": "vitest run",
     "typecheck": "tsc --noEmit",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --grep-invert @prod-smoke",
+    "test:smoke": "npm run build && playwright test -c playwright.prod.config.ts --grep @prod-smoke",
     "stitch:screen": "node scripts/generate-stitch-screen.mjs",
     "stitch:homepage": "node scripts/generate-homepage-stitch.mjs",
     "stitch:smoke": "node scripts/stitch-smoke.mjs"

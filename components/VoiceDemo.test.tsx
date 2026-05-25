@@ -136,6 +136,32 @@ describe("VoiceDemo", () => {
     expect(screen.getByTestId("voice-status")).toHaveTextContent("마이크 권한이 필요합니다.");
   });
 
+  it("shows an unsupported browser fallback when recognition APIs are unavailable", async () => {
+    Object.defineProperty(window, "SpeechRecognition", {
+      configurable: true,
+      writable: true,
+      value: undefined,
+    });
+
+    Object.defineProperty(window, "webkitSpeechRecognition", {
+      configurable: true,
+      writable: true,
+      value: undefined,
+    });
+
+    render(<VoiceDemo />);
+
+    fireEvent.click(screen.getByRole("button", { name: "체험 시작하기" }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "이 브라우저는 음성 체험을 지원하지 않습니다. 최신 Chrome 또는 Safari를 권장합니다.",
+    );
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "호환 브라우저에서 다시 열면 실시간 마이크 체험을 바로 이어갈 수 있습니다.",
+    );
+    expect(screen.getByRole("button", { name: "체험 시작하기" })).toBeVisible();
+  });
+
   it("falls back to text-only completion when SpeechSynthesisUtterance is unavailable", async () => {
     Object.defineProperty(window, "SpeechSynthesisUtterance", {
       configurable: true,

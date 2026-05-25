@@ -10,10 +10,17 @@
 9. `VoiceDemo` + `useVoiceDemo`로 홈 브라우저 네이티브 음성 데모 v1을 구현하고 unit/build/e2e를 모두 green으로 만들었다.
 10. CI workflow를 `check` / `e2e` 2-job 구조로 harden 했다.
 11. voice demo 상태 screenshot과 Figma parity handoff 문서를 정리했다.
+12. `next build + next start` 기준 production smoke gate를 추가하고 CI에 `smoke` job을 연결했다.
+13. `docs/release-policy.md`와 `.github/PULL_REQUEST_TEMPLATE.md`로 release policy hardening을 저장소 안에 고정했다.
+14. unsupported-browser fallback hardening으로 `SpeechRecognition` 부재 분기를 명시적으로 검증했다.
+15. live Figma tool access로 `Voice Demo State Parity` desktop/mobile state family를 실제 파일에 반영했다.
+16. 전역 header/footer/skip link/active nav 구조를 layout 기준으로 통합했다.
+17. `/login`, `/signup`을 server page + client component 구조로 분리하고 route metadata를 모든 라우트에서 고정했다.
+18. `e2e/metadata.spec.ts`와 production smoke를 통해 route metadata와 built route heading을 최종 검증했다.
 
 ## Live Session Info
 - Stitch/Gemini/Ollama/Claude 체인은 모두 사용 가능한 상태다.
-- 이 세션에서는 Figma tool이 직접 노출되지 않았고, 대신 docs + screenshot handoff로 parity를 준비했다.
+- 이 세션에서는 Figma tool이 실제 callable했고, live parity 반영까지 끝냈다.
 - 과거에 `_whoami` 기준 연결된 Figma 계정 핸들은 `margaretaamber`, 플랜 키는 `team::1628286850847177154`였다.
 
 ## Important Context
@@ -34,14 +41,23 @@
   - `npm run typecheck`
   - `npm run build`
   - `npm run test:e2e`
+  - `npm run test:smoke`
+- metadata routes:
+  - `/` -> `홈 | Velora Voice`
+  - `/about` -> `소개 | Velora Voice`
+  - `/service` -> `서비스 | Velora Voice`
+  - `/faq` -> `FAQ | Velora Voice`
+  - `/login` -> `로그인 | Velora Voice`
+  - `/signup` -> `회원가입 | Velora Voice`
 
 ## Likely Next Tasks
-1. Figma tool이 보이는 세션에서 `docs/figma/home-voice-demo-state-update.md`와 `artifacts/voice-demo-states/`를 기준으로 `Home/Desktop`에 state frame을 추가한다.
-2. 작업일지, 메모리 저장, 커밋 요청이 들어오면 오늘까지의 구현/CI/Figma parity 작업을 정리한다.
-3. release-oriented 라운드에서 branch policy, artifact retention, deploy smoke gate를 더 조정한다.
+1. GitHub UI access가 가능해지면 branch protection과 required checks를 실제로 적용한다.
+2. 필요 시 `Voice Demo State Parity`를 component/variant 구조로 다듬는다.
+3. GitHub UI branch protection과 Figma component/variant 정리 전까지는 현재 green baseline을 유지한다.
 
 ## Cautions
 - Stitch 홈 전체 생성은 쉽게 붕괴하므로 한 번에 큰 프롬프트로 다시 밀지 말고 섹션 단위 전략을 유지한다.
 - Figma 관련 설정을 손댈 때 `~/.codex/config.toml`에 깨진 `mcp_servers.codex_apps` 블록을 넣지 않는다.
 - Figma 커넥터 접근 상태가 바뀌면 반드시 새 Codex 세션에서 도구 노출을 다시 확인한다.
 - 현재 작업 트리는 매우 큰 미커밋 상태다. 기존 변경을 되돌리지 말고, commit 요청이 오면 현재 상태를 그대로 묶는 쪽으로 처리한다.
+- route title을 layout template에 의존시키면 smoke/e2e와 어긋날 수 있으므로, 주요 marketing/auth routes는 full title string을 직접 내보내는 쪽이 안전하다.

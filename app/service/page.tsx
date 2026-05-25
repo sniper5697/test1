@@ -1,6 +1,5 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteFooter } from "../../components/SiteFooter";
-import { SiteHeader } from "../../components/SiteHeader";
 import {
   serviceFeatures,
   serviceFlow,
@@ -8,11 +7,15 @@ import {
   technicalStrengths,
 } from "../../lib/page-content";
 
+export const metadata: Metadata = {
+  title: "서비스 | Velora Voice",
+  description:
+    "Velora Voice가 제공하는 고성능 AI 음성 솔루션, 핵심 기능, 적용 흐름과 기술 강점을 한 페이지에서 확인하세요.",
+};
+
 export default function ServicePage() {
   return (
-    <main className="page-shell">
-      <SiteHeader />
-
+    <div className="page-shell">
       <section className="section-card">
         <p className="eyebrow">서비스</p>
         <h1 className="title-md">실시간 음성 AI를 실제 제품 경험처럼 보여주는 구조</h1>
@@ -125,7 +128,6 @@ export default function ServicePage() {
         </Link>
       </section>
 
-      <SiteFooter />
-    </main>
+    </div>
   );
 }

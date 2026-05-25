@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
+  { href: "/", label: "홈" },
   { href: "/service", label: "서비스" },
   { href: "/about", label: "소개" },
   { href: "/faq", label: "FAQ" },
@@ -9,42 +13,39 @@ const navItems = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
-    <section
-      className="section-card"
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: 64,
-        gap: 16,
-        flexWrap: "wrap",
-      }}
-    >
+    <header className="site-header">
+      <div className="site-header__inner">
       <Link
         href="/"
-        style={{ display: "flex", alignItems: "center", gap: 12 }}
+        className="site-brand"
         aria-label="Velora Voice 홈으로"
       >
-        <span
-          aria-hidden="true"
-          style={{
-            width: 16,
-            height: 16,
-            borderRadius: 999,
-            background: "linear-gradient(135deg, #4aa7ff, #1d52d6)",
-            display: "inline-block",
-          }}
-        />
+        <span className="site-brand__dot" aria-hidden="true" />
         <strong>Velora Voice</strong>
       </Link>
-      <nav aria-label="주요 메뉴" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-        {navItems.map((item) => (
-          <Link key={item.href} href={item.href}>
-            {item.label}
-          </Link>
-        ))}
+      <nav aria-label="주요 메뉴">
+        <ul className="site-nav">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`site-nav__link${isActive ? " is-active" : ""}`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
-    </section>
+      </div>
+    </header>
   );
 }

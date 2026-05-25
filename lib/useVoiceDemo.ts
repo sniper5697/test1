@@ -10,6 +10,8 @@ export type VoiceDemoState =
   | "speaking"
   | "error";
 
+export type VoiceDemoErrorKind = "unsupported" | "permission" | "runtime" | null;
+
 type RecognitionAlternative = { transcript?: string };
 type RecognitionResultList = ArrayLike<ArrayLike<RecognitionAlternative>>;
 type RecognitionEvent = Event & {
@@ -97,6 +99,7 @@ export function useVoiceDemo() {
   const [transcript, setTranscript] = useState("");
   const [reply, setReply] = useState("");
   const [error, setError] = useState("");
+  const [errorKind, setErrorKind] = useState<VoiceDemoErrorKind>(null);
   const recognitionRef = useRef<RecognitionLike | null>(null);
   const replyTimerRef = useRef<number | null>(null);
   const stateRef = useRef<VoiceDemoState>("idle");
@@ -162,6 +165,7 @@ export function useVoiceDemo() {
 
     if (!Recognition) {
       setError("이 브라우저는 음성 체험을 지원하지 않습니다. 최신 Chrome 또는 Safari를 권장합니다.");
+      setErrorKind("unsupported");
       setTrackedState("error");
       return;
     }
@@ -171,6 +175,7 @@ export function useVoiceDemo() {
     setTranscript("");
     setReply("");
     setError("");
+    setErrorKind(null);
     setTrackedState("permission");
 
     const recognition = new Recognition();
@@ -201,7 +206,13 @@ export function useVoiceDemo() {
     });
 
     recognition.addEventListener("error", (event) => {
-      setError(humanizeRecognitionError((event as RecognitionEvent).error));
+      const recognitionError = (event as RecognitionEvent).error;
+      setError(humanizeRecognitionError(recognitionError));
+      setErrorKind(
+        recognitionError === "not-allowed" || recognitionError === "service-not-allowed"
+          ? "permission"
+          : "runtime",
+      );
       setTrackedState("error");
     });
 
@@ -226,6 +237,7 @@ export function useVoiceDemo() {
 
   return {
     error,
+    errorKind,
     reply,
     start,
     state,
