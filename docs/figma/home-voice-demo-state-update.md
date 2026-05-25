@@ -10,6 +10,11 @@
   - `Voice Demo State Parity`
   - node id: `12:2`
 - Desktop and mobile state families were added as real Figma frames.
+- Reusable component set now also exists:
+  - `VoiceDemo/StateParity`
+  - node id: `15:659`
+  - axes: `State x Device`
+  - variant count: `14`
 
 ## Source of Truth
 - Code:
@@ -94,3 +99,4 @@
 
 ## Residual Risk
 - If Figma collapses the status pill into generic body text or renames the CTA/state copy, design and implementation will drift and CI assertions will stop representing the intended UX.
+- GitHub branch protection and required checks still remain an external hosting-side step; the design file is no longer the blocker.

@@ -107,3 +107,8 @@
 ### Route Metadata Hardening
 - Next route metadata를 정확한 문자열로 보장해야 하면 layout template에 기대기보다 각 route가 완전한 title string을 직접 export하는 편이 안정적이다.
 - client page에서 metadata가 필요한 경우 `page.tsx`를 server component로 유지하고 실제 interactive UI를 별도 `*PageClient.tsx`로 분리하는 구조가 가장 단순하다.
+
+### Figma Componentization
+- 기존 parity 프레임이 이미 상태별로 잘 분리돼 있으면 새로 재구성하기보다 source state frame을 clone -> component 변환 -> `combineAsVariants` 하는 편이 가장 빠르고 안전하다.
+- 이번 voice demo처럼 code state가 명확할 때는 `State x Device` 두 축만으로도 충분히 재사용 가능한 component set을 만들 수 있다.
+- 커넥터가 불안정해도 once connected 상태에서 metadata로 source node id를 회수한 뒤 일괄 componentization하는 전략이 효율적이다.

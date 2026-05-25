@@ -17,6 +17,7 @@
 16. 전역 header/footer/skip link/active nav 구조를 layout 기준으로 통합했다.
 17. `/login`, `/signup`을 server page + client component 구조로 분리하고 route metadata를 모든 라우트에서 고정했다.
 18. `e2e/metadata.spec.ts`와 production smoke를 통해 route metadata와 built route heading을 최종 검증했다.
+19. `Voice Demo State Parity`를 `VoiceDemo/StateParity` component set으로 변환하고 `State x Device` variant 구조를 실제 Figma 파일에 생성했다.
 
 ## Live Session Info
 - Stitch/Gemini/Ollama/Claude 체인은 모두 사용 가능한 상태다.
@@ -49,11 +50,18 @@
   - `/faq` -> `FAQ | Velora Voice`
   - `/login` -> `로그인 | Velora Voice`
   - `/signup` -> `회원가입 | Velora Voice`
+- figma voice demo component set:
+  - file key: `BHNgq4ZWHg3CyiN2fm5qHh`
+  - page id: `0:1`
+  - parity root id: `12:2`
+  - component set id: `15:659`
+  - axes: `State x Device`
+  - variants: `idle, permission, listening, thinking, speaking, error, postsession` x `desktop, mobile`
 
 ## Likely Next Tasks
 1. GitHub UI access가 가능해지면 branch protection과 required checks를 실제로 적용한다.
 2. 필요 시 `Voice Demo State Parity`를 component/variant 구조로 다듬는다.
-3. GitHub UI branch protection과 Figma component/variant 정리 전까지는 현재 green baseline을 유지한다.
+3. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma component parity를 유지한다.
 
 ## Cautions
 - Stitch 홈 전체 생성은 쉽게 붕괴하므로 한 번에 큰 프롬프트로 다시 밀지 말고 섹션 단위 전략을 유지한다.

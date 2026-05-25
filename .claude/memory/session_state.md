@@ -1,7 +1,7 @@
 ## Current Phase
 - Phase 4/5 경계 상태
-- 홈페이지 baseline 구현, 하위 페이지 baseline 구현, 홈 음성 데모 v1 구현, CI hardening, Figma parity handoff, production smoke gate, release policy hardening, unsupported-browser fallback hardening, live Figma parity 반영, 전역 navigation/accessibility hardening, route metadata hardening까지 완료됐다.
-- 다음 단계는 GitHub UI 단계의 branch protection 운영 적용으로 넘어가거나, Figma parity frame을 component/variant 구조로 다듬는 것이다.
+- 홈페이지 baseline 구현, 하위 페이지 baseline 구현, 홈 음성 데모 v1 구현, CI hardening, Figma parity handoff, production smoke gate, release policy hardening, unsupported-browser fallback hardening, live Figma parity 반영, 전역 navigation/accessibility hardening, route metadata hardening, Figma voice demo componentization까지 완료됐다.
+- 다음 단계는 GitHub UI 단계의 branch protection 운영 적용으로 넘어가거나, 필요 시 secondary pages CTA 정렬 같은 low-priority polish를 수행하는 것이다.
 
 ## Current Branch
 - `main`
@@ -12,10 +12,9 @@
 - Agent C: `claude cli`
 
 ## Last Completed Task
-- 전역 layout 기준 header/footer/skip link 구조를 고정했다.
-- 주요 라우트에서 단일 main landmark와 active nav 상태를 검증했다.
-- `/login`, `/signup`을 server page + client component 구조로 나눠 metadata를 안정적으로 내보내도록 바꿨다.
-- route metadata E2E와 production smoke를 다시 돌려 title/description을 라우트별 고정값으로 닫았다.
+- `Voice Demo State Parity`를 기존 상태 프레임 복제 기반으로 `VoiceDemo/StateParity` component set으로 승격했다.
+- axes는 `State x Device`로 고정했고, 14개 variant를 모두 생성했다.
+- screenshot artifact와 planning round 문서로 결과를 고정했다.
 
 ## Source Of Truth
 - 운영 규칙: `AGENTS.md`
@@ -27,9 +26,8 @@
 
 ## Open TODO
 - 필요하면 `Secondary Pages` 페이지에도 voice demo copy/tone과 맞춘 CTA 정렬을 다시 맞춘다.
-- 필요하면 `Voice Demo State Parity`를 component/variant 기반 구조로 재정리한다.
 - GitHub UI에서 branch protection rule과 required checks를 실제로 적용한다.
-- 오늘 작업일지/메모리/커밋 요청은 지금 처리 중이다.
+- 오늘 작업일지/메모리/커밋은 2026-05-26 기준으로 다시 정리해야 한다.
 
 ## Working Tree Notes
 - 현재 로컬 게이트는 green:
@@ -43,6 +41,7 @@
 - production smoke artifact는 `test-results/`와 `playwright-report/` 업로드 기준으로 CI에 남는다.
 - release policy 문서 기준으로 required checks, artifact retention, rollback 절차가 저장소 안에 고정됐다.
 - Figma parity root frame id는 `12:2`이고, desktop/mobile state family가 실제로 존재한다.
+- Figma reusable component set id는 `15:659`이고, variant count는 14다.
 - route metadata는 `/`, `/about`, `/service`, `/faq`, `/login`, `/signup` 모두 개별 title/description으로 고정됐다.
 
 ## Supervisor Guidance
