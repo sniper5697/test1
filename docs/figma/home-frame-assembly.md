@@ -7,6 +7,8 @@
   - `Voice Demo State Parity` (`12:2`)
 - Secondary pages desktop parity is now also present:
   - `Secondary Pages/Desktop` (`16:2`)
+- Secondary pages mobile parity is now also present:
+  - `Secondary Pages/Mobile` (`17:2`)
 - This document remains the source of truth for future refinement, not just initial assembly.
 
 ## Frame Goal

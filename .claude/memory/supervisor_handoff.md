@@ -20,6 +20,7 @@
 19. `Voice Demo State Parity`를 `VoiceDemo/StateParity` component set으로 변환하고 `State x Device` variant 구조를 실제 Figma 파일에 생성했다.
 20. secondary pages code polish로 공통 CTA/tone/spacing 규칙을 `about/service/faq/login/signup`에 반영했다.
 21. Figma file `BHNgq4ZWHg3CyiN2fm5qHh` page `Homepage`에 `Secondary Pages/Desktop` parity root (`16:2`)를 추가했다.
+22. 같은 Figma 파일에 `Secondary Pages/Mobile` parity root (`17:2`)를 추가했다.
 
 ## Live Session Info
 - Stitch/Gemini/Ollama/Claude 체인은 모두 사용 가능한 상태다.
@@ -67,11 +68,19 @@
     - `FAQ/Desktop` `16:104`
     - `Login/Desktop` `16:131`
     - `Signup/Desktop` `16:167`
+- figma secondary pages mobile parity:
+  - root id: `17:2`
+  - child frames:
+    - `About/Mobile` `17:5`
+    - `Service/Mobile` `17:25`
+    - `FAQ/Mobile` `17:48`
+    - `Login/Mobile` `17:71`
+    - `Signup/Mobile` `17:102`
 
 ## Likely Next Tasks
 1. GitHub UI access가 가능해지면 branch protection과 required checks를 실제로 적용한다.
-2. 필요 시 `Secondary Pages/Desktop`에 대응하는 mobile parity frame을 추가한다.
-3. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma parity set을 유지한다.
+2. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma parity set을 유지한다.
+3. 필요하면 mobile parity 위에 시각적 미세 polish만 수행한다.
 
 ## Cautions
 - Stitch 홈 전체 생성은 쉽게 붕괴하므로 한 번에 큰 프롬프트로 다시 밀지 말고 섹션 단위 전략을 유지한다.

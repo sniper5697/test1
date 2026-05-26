@@ -117,3 +117,4 @@
 - secondary pages는 코드에서 공통 CTA와 shared utility class를 먼저 정리한 뒤, Figma에는 full fidelity clone보다 parity root를 별도로 만드는 편이 drift 관리가 쉽다.
 - `about/service/faq`는 공통 CTA band 하나로 funnel semantics를 고정하고, `login/signup`은 split-panel auth intro 구조를 고정하면 디자인/구현 정렬 비용이 크게 줄어든다.
 - Figma parity 라운드는 기존 page를 수정하는 것보다 file 오른쪽에 `Secondary Pages/Desktop` 같은 dedicated root를 추가하는 편이 증거 관리와 screenshot artifact 확보에 유리하다.
+- mobile parity는 desktop parity를 축소 복제하기보다 `390px single-column` 전용 root를 따로 두는 편이 카드 순서와 auth stack 의도를 명확하게 보존한다.
