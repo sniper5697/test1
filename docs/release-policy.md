@@ -18,6 +18,8 @@
   - `check`
   - `e2e`
   - `smoke`
+- 현재 단일 유지보수 저장소 운영 기준에서는 required approval count를 `0`으로 둔다.
+- 이유는 self-review 강제가 `required checks`보다 먼저 solo maintainer를 영구적으로 막기 때문이다.
 - stale review dismissal를 켠다.
 - admin bypass는 기본적으로 금지한다.
 
@@ -60,6 +62,5 @@
 
 ## External Ops Pending
 - 실제 deploy target secret 입력
-- environment protection rule 설정
 - 서버별 restart 전략 반영
 - post-deploy smoke gate 추가
