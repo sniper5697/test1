@@ -59,7 +59,7 @@
 - 로그와 artifact에는 plaintext secret을 남기지 않는다.
 
 ## External Ops Pending
-- GitHub branch protection rule 실제 적용
-- required checks 지정
-- admin bypass 금지 여부 확인
-- 실제 deployment target이 생기면 release workflow와 post-deploy smoke gate를 별도 라운드로 추가
+- 실제 deploy target secret 입력
+- environment protection rule 설정
+- 서버별 restart 전략 반영
+- post-deploy smoke gate 추가

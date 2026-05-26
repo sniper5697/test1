@@ -1,7 +1,7 @@
 ## Current Phase
 - Phase 4/5 경계 상태
 - 홈페이지 baseline 구현, 하위 페이지 baseline 구현, 홈 음성 데모 v1 구현, CI hardening, production smoke gate, release policy hardening, unsupported-browser fallback hardening, 전역 navigation/accessibility hardening, route metadata hardening, Figma voice demo componentization, secondary pages code polish, secondary pages Figma desktop/mobile parity까지 완료됐다.
-- 다음 단계는 GitHub UI 단계의 branch protection 운영 적용으로 넘어가거나, 필요 시 세부 visual polish를 수행하는 것이다.
+- 다음 단계는 deploy target secret과 restart strategy를 채우고 첫 수동 배포를 검증하는 것이다.
 
 ## Current Branch
 - `main`
@@ -12,9 +12,7 @@
 - Agent C: `claude cli`
 
 ## Last Completed Task
-- `about/service/faq/login/signup`의 CTA/tone/spacing을 code 기준으로 정렬했고, 같은 기준을 Figma `Secondary Pages/Desktop` parity root로 반영했다.
-- code round에서는 `SecondaryPageCta`와 shared secondary page utility class를 추가했다.
-- Figma round에서는 file `BHNgq4ZWHg3CyiN2fm5qHh` page `0:1`에 desktop parity root `16:2`와 mobile parity root `17:2`를 생성했다.
+- GitHub `main` branch protection을 실제 저장소에 적용했고, `staging`/`production` environment와 수동 self-hosted deploy skeleton workflow를 추가했다.
 
 ## Source Of Truth
 - 운영 규칙: `AGENTS.md`
@@ -25,8 +23,8 @@
 - voice demo reference: `artifacts/voice-demo-states/`
 
 ## Open TODO
-- GitHub UI에서 branch protection rule과 required checks를 실제로 적용한다.
-- 오늘 작업일지/메모리/커밋은 2026-05-26 기준으로 다시 정리해야 한다.
+- `staging`, `production` environment secrets를 채운다.
+- process restart 전략을 서버 기준으로 반영한다.
 
 ## Working Tree Notes
 - 현재 로컬 게이트는 green:
@@ -42,9 +40,12 @@
 - Figma secondary pages parity root id는 `16:2`이고, desktop about/service/faq/login/signup frame set이 실제로 존재한다.
 - Figma secondary pages mobile parity root id는 `17:2`이고, mobile about/service/faq/login/signup frame set이 실제로 존재한다.
 - route metadata는 `/`, `/about`, `/service`, `/faq`, `/login`, `/signup` 모두 개별 title/description으로 고정됐다.
+- GitHub remote repository는 `sniper5697/test1`이고, `main` branch protection이 활성화돼 있다.
+- GitHub environments `staging`, `production`이 생성돼 있다.
+- `.github/workflows/deploy.yml`은 secrets가 없으면 skip되는 수동 배포 skeleton이다.
 
 ## Supervisor Guidance
 - 사용자를 중계자로 쓰지 않는다.
 - 사용자의 특별한 지시가 없으면 감독관이 직접 에이전트나 도구 체인을 이어간다.
 - 위임이 필요한 판단/설계/검증은 계속 Agent G/K/C를 거쳐 진행한다.
-- 지금부터는 external release ops, final commit/memory 정리 순서로 넘기는 것이 자연스럽다.
+- 지금부터는 deploy target secret 입력과 first deploy smoke 확인 순서로 넘기는 것이 자연스럽다.

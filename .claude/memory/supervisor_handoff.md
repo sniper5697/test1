@@ -21,6 +21,8 @@
 20. secondary pages code polish로 공통 CTA/tone/spacing 규칙을 `about/service/faq/login/signup`에 반영했다.
 21. Figma file `BHNgq4ZWHg3CyiN2fm5qHh` page `Homepage`에 `Secondary Pages/Desktop` parity root (`16:2`)를 추가했다.
 22. 같은 Figma 파일에 `Secondary Pages/Mobile` parity root (`17:2`)를 추가했다.
+23. GitHub repository `sniper5697/test1`에 `main` branch protection을 실제 적용했다.
+24. GitHub environments `staging`, `production`을 만들고 수동 self-hosted deploy skeleton workflow를 추가했다.
 
 ## Live Session Info
 - Stitch/Gemini/Ollama/Claude 체인은 모두 사용 가능한 상태다.
@@ -81,6 +83,7 @@
 1. GitHub UI access가 가능해지면 branch protection과 required checks를 실제로 적용한다.
 2. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma parity set을 유지한다.
 3. 필요하면 mobile parity 위에 시각적 미세 polish만 수행한다.
+4. 다음 실제 배포 라운드 전에는 environment secrets와 restart strategy를 먼저 채워야 한다.
 
 ## Cautions
 - Stitch 홈 전체 생성은 쉽게 붕괴하므로 한 번에 큰 프롬프트로 다시 밀지 말고 섹션 단위 전략을 유지한다.

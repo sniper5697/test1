@@ -1,0 +1,141 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+      ref:
+        description: "Git ref to deploy"
+        required: false
+        default: "main"
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+concurrency:
+  group: deploy-${{ inputs.environment }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run release gates
+        run: |
+          npm run test:unit
+          npm run typecheck
+          npm run build
+          npm run test:smoke
+
+      - name: Prepare deploy bundle
+        run: |
+          mkdir -p deploy-bundle
+          cp -R .next deploy-bundle/.next
+          if [ -d public ]; then cp -R public deploy-bundle/public; fi
+          cp package.json deploy-bundle/package.json
+          cp package-lock.json deploy-bundle/package-lock.json
+          cp next.config.mjs deploy-bundle/next.config.mjs
+          tar -czf deploy-bundle.tar.gz -C deploy-bundle .
+
+      - name: Upload deploy bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-bundle
+          path: deploy-bundle.tar.gz
+          retention-days: 7
+
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: package
+    environment: ${{ inputs.environment }}
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+      DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+      DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+
+    steps:
+      - name: Download deploy bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: deploy-bundle
+
+      - name: Validate deployment secrets
+        id: validate
+        shell: bash
+        run: |
+          missing=0
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PATH DEPLOY_KEY; do
+            if [ -z "${!name}" ]; then
+              missing=1
+            fi
+          done
+          if [ -z "$DEPLOY_PORT" ]; then
+            echo "DEPLOY_PORT=22" >> "$GITHUB_ENV"
+          fi
+          if [ "$missing" -eq 1 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "No host configured for ${{ inputs.environment }} - skipping deploy."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip deploy
+        if: steps.validate.outputs.ready != 'true'
+        run: echo "Deploy skeleton only. Configure environment secrets to enable remote deploy."
+
+      - name: Configure SSH key
+        if: steps.validate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload bundle to server
+        if: steps.validate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH/releases'"
+          scp -P "$DEPLOY_PORT" deploy-bundle.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz"
+
+      - name: Extract bundle on server
+        if: steps.validate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "\
+            set -euo pipefail; \
+            mkdir -p '$DEPLOY_PATH/current'; \
+            tar -xzf '$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz' -C '$DEPLOY_PATH/current'; \
+            cd '$DEPLOY_PATH/current'; \
+            npm ci --omit=dev; \
+            echo 'Bundle extracted to $DEPLOY_PATH/current. Process restart is intentionally left to server-specific automation.'"
