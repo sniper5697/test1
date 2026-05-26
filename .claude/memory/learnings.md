@@ -95,10 +95,17 @@
 ### Release Policy Hardening
 - branch protection 같은 운영 정책은 저장소 파일만으로 완전히 강제되지 않으므로, repo 안에는 `release-policy.md`와 PR template로 기준을 고정하고 실제 GitHub UI 적용은 외부 운영 단계로 분리하는 편이 현실적이다.
 - release 문서에는 required checks, artifact retention day count, rollback target time, env/secret hygiene를 숫자와 절차 수준으로 명시해야 다음 감독관이 그대로 집행할 수 있다.
+- 단일 유지보수 저장소에서 `required approvals 1 + require last push approval` 조합은 solo maintainer를 영구적으로 막을 수 있다.
+- 이 경우 품질 게이트는 `strict required checks + PR-only + conversation resolution`으로 유지하고, approval count는 `0`으로 조정하는 편이 현실적이다.
 
 ### Unsupported Browser Fallback
 - browser-native voice demo는 정상 경로만 green이어도 충분하지 않고, `SpeechRecognition` 자체가 없는 브라우저 분기를 unit test로 고정해야 residual risk가 실제로 줄어든다.
 - unsupported 환경에서는 기능 미지원 사실과 권장 브라우저를 함께 보여주는 편이 permission denied와 구분이 명확하다.
+
+### Deploy Skeleton
+- `Deploy` workflow에서 `npm run test:smoke`를 돌린다면 CI smoke job과 같은 전제조건을 갖춰야 한다.
+- 즉 `Playwright browser install` 단계가 없으면 deploy package job은 smoke 단계에서 브라우저 실행 파일 부재로 실패한다.
+- GitHub Actions Node runtime deprecation을 완전히 없애려면 `checkout/setup-node/cache`뿐 아니라 `upload-artifact`/`download-artifact` 계열까지 함께 올려야 한다.
 
 ### Global Navigation Accessibility
 - 공통 header/footer는 각 페이지에 중복 배치하기보다 `app/layout.tsx`에서 단일 source로 관리하는 편이 landmark, active nav, skip link 검증을 단순하게 만든다.
