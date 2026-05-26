@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { FaqItem } from "../../components/FaqItem";
+import { SecondaryPageCta } from "../../components/SecondaryPageCta";
 import { faqEntries } from "../../lib/page-content";
 
 export const metadata: Metadata = {
@@ -15,13 +15,13 @@ export default function FaqPage() {
       <section className="section-card">
         <p className="eyebrow">FAQ</p>
         <h1 className="title-md">데모 전 가장 많이 묻는 질문을 한 자리에서 정리합니다</h1>
-        <p className="muted" style={{ fontSize: 18, lineHeight: 1.8, maxWidth: 860 }}>
+        <p className="muted secondary-lead">
           도입 전 확인해야 하는 핵심 질문을 먼저 해소하면, 데모 체험까지의 거리도
           짧아집니다. 기술 방식, 정확도, 준비 사항, 도입 흐름을 중심으로 정리했습니다.
         </p>
       </section>
 
-      <section className="section-card" style={{ marginTop: 48 }}>
+      <section className="section-card secondary-section-spacing">
         <div style={{ display: "grid", gap: 16 }}>
           {faqEntries.map((entry, index) => (
             <FaqItem
@@ -34,23 +34,15 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <section
-        className="section-card"
-        style={{
-          marginTop: 48,
-          background: "linear-gradient(180deg, #f0f6ff 0%, #e1eeff 100%)",
-        }}
-      >
-        <p className="eyebrow">지원</p>
-        <h2 className="title-md">원하는 답을 찾지 못했다면 데모로 바로 확인하세요</h2>
-        <p className="muted" style={{ lineHeight: 1.8, maxWidth: 760 }}>
-          FAQ에서 해결되지 않는 부분은 데모 체험을 통해 더 빠르게 이해할 수 있습니다.
-        </p>
-        <Link className="primary-button" href="/#demo">
-          데모 보기
-        </Link>
-      </section>
-
+      <SecondaryPageCta
+        eyebrow="지원"
+        title="원하는 답을 찾지 못했다면 데모로 바로 확인하세요"
+        body="FAQ에서 해결되지 않는 부분은 실시간 데모를 보는 편이 더 빠릅니다. 필요하면 서비스 구조 설명도 이어서 확인할 수 있습니다."
+        primaryHref="/#demo"
+        primaryLabel="데모 보기"
+        secondaryHref="/service"
+        secondaryLabel="서비스 보기"
+      />
     </div>
   );
 }

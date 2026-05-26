@@ -44,18 +44,22 @@ export function LoginPageClient() {
         }}
       >
         <article
-          className="section-card"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(232,241,255,0.92) 100%)",
-          }}
+          className="section-card auth-intro-card"
         >
-          <p className="eyebrow">Welcome Back</p>
+          <p className="eyebrow">로그인</p>
           <h2 className="title-md">다시 만나서 반갑습니다</h2>
-          <p className="muted" style={{ lineHeight: 1.8, maxWidth: 520 }}>
+          <p className="muted secondary-lead" style={{ maxWidth: 520 }}>
             Velora Voice의 실시간 음성 경험은 가장 짧은 진입 경로에서 시작되어야
             합니다. 계정 진입 화면도 마케팅 페이지와 같은 톤으로 정리했습니다.
           </p>
+          <div className="auth-intro-actions">
+            <Link className="primary-button" href="/#demo">
+              데모 보기
+            </Link>
+            <Link className="secondary-link-button" href="/service">
+              서비스 보기
+            </Link>
+          </div>
           <div
             aria-label="waveform preview"
             style={{
@@ -172,7 +176,7 @@ export function LoginPageClient() {
 
       <p className="muted" style={{ textAlign: "center", marginTop: 24 }}>
         데모를 먼저 보고 싶다면 <Link href="/#demo">홈의 실시간 음성 섹션</Link>으로
-        이동할 수 있습니다.
+        이동하거나 <Link href="/service">서비스 페이지</Link>에서 구조를 먼저 확인할 수 있습니다.
       </p>
     </div>
   );

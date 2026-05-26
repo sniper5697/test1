@@ -53,18 +53,22 @@ export function SignupPageClient() {
         }}
       >
         <article
-          className="section-card"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(232,241,255,0.92) 100%)",
-          }}
+          className="section-card auth-intro-card"
         >
-          <p className="eyebrow">Create Account</p>
+          <p className="eyebrow">회원가입</p>
           <h2 className="title-md">30초 안에 계정 진입 구조를 이해할 수 있게</h2>
-          <p className="muted" style={{ lineHeight: 1.8, maxWidth: 520 }}>
+          <p className="muted secondary-lead" style={{ maxWidth: 520 }}>
             회원가입 자체가 목적이 아니라, 앞으로 연결될 서비스 생태계의 입구를
             신뢰감 있게 보여주는 화면입니다. 폼은 단순하지만 브랜드 톤은 유지합니다.
           </p>
+          <div className="auth-intro-actions">
+            <Link className="primary-button" href="/#demo">
+              데모 보기
+            </Link>
+            <Link className="secondary-link-button" href="/service">
+              서비스 보기
+            </Link>
+          </div>
           <div
             style={{
               display: "grid",
@@ -235,7 +239,7 @@ export function SignupPageClient() {
 
       <p className="muted" style={{ textAlign: "center", marginTop: 24 }}>
         먼저 제품을 이해하고 싶다면 <Link href="/service">서비스 페이지</Link>에서 흐름을
-        확인할 수 있습니다.
+        확인하거나 <Link href="/#demo">홈 데모</Link>를 바로 체험할 수 있습니다.
       </p>
     </div>
   );

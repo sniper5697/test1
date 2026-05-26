@@ -15,13 +15,13 @@ test("marketing routes render and logo returns to the homepage", async ({ page }
   }
 });
 
-test("service CTA returns to the homepage demo section", async ({ page }) => {
-  await page.goto("/service");
-
-  await page.getByRole("link", { name: "데모 보기" }).click();
-
-  await expect(page).toHaveURL(/\/#demo$/);
-  await expect(page.locator("#demo")).toBeInViewport();
+test("marketing CTAs return to the homepage demo section", async ({ page }) => {
+  for (const href of ["/about", "/service", "/faq"]) {
+    await page.goto(href);
+    await page.getByRole("link", { name: "데모 보기" }).first().click();
+    await expect(page).toHaveURL(/\/#demo$/);
+    await expect(page.locator("#demo")).toBeInViewport();
+  }
 });
 
 test("auth routes render forms and link to each other", async ({ page }) => {
@@ -41,7 +41,7 @@ test("auth routes render forms and link to each other", async ({ page }) => {
   await expect(page).toHaveURL(/\/login$/);
 });
 
-test("faq accordion toggles and CTA returns to the homepage demo section", async ({ page }) => {
+test("faq accordion toggles and CTA remains available", async ({ page }) => {
   await page.goto("/faq");
 
   const trigger = page.getByRole("button", {
@@ -64,9 +64,7 @@ test("faq accordion toggles and CTA returns to the homepage demo section", async
       name: "이 데모는 어떤 음성 AI 기능을 보여주나요?",
     }),
   ).toHaveCount(0);
-
-  await page.getByRole("link", { name: "데모 보기" }).click();
-  await expect(page).toHaveURL(/\/#demo$/);
+  await expect(page.getByRole("link", { name: "데모 보기" }).first()).toBeVisible();
 });
 
 test("faq supports keyboard disclosure behavior", async ({ page }) => {

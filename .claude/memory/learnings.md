@@ -112,3 +112,8 @@
 - 기존 parity 프레임이 이미 상태별로 잘 분리돼 있으면 새로 재구성하기보다 source state frame을 clone -> component 변환 -> `combineAsVariants` 하는 편이 가장 빠르고 안전하다.
 - 이번 voice demo처럼 code state가 명확할 때는 `State x Device` 두 축만으로도 충분히 재사용 가능한 component set을 만들 수 있다.
 - 커넥터가 불안정해도 once connected 상태에서 metadata로 source node id를 회수한 뒤 일괄 componentization하는 전략이 효율적이다.
+
+### Secondary Page Parity
+- secondary pages는 코드에서 공통 CTA와 shared utility class를 먼저 정리한 뒤, Figma에는 full fidelity clone보다 parity root를 별도로 만드는 편이 drift 관리가 쉽다.
+- `about/service/faq`는 공통 CTA band 하나로 funnel semantics를 고정하고, `login/signup`은 split-panel auth intro 구조를 고정하면 디자인/구현 정렬 비용이 크게 줄어든다.
+- Figma parity 라운드는 기존 page를 수정하는 것보다 file 오른쪽에 `Secondary Pages/Desktop` 같은 dedicated root를 추가하는 편이 증거 관리와 screenshot artifact 확보에 유리하다.

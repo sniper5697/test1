@@ -178,6 +178,76 @@ a {
   font-weight: 700;
 }
 
+.secondary-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  border: 1px solid rgba(46, 99, 214, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.secondary-lead {
+  max-width: 860px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.secondary-section-spacing {
+  margin-top: 48px;
+}
+
+.secondary-grid-3 {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 24px;
+}
+
+.secondary-grid-2 {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.secondary-surface-card {
+  padding: 24px;
+  border: 1px solid rgba(215, 231, 255, 0.92);
+  border-radius: 24px;
+  background: #fff;
+}
+
+.secondary-surface-card--sm {
+  padding: 20px;
+  border: 1px solid rgba(215, 231, 255, 0.92);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.secondary-cta-band {
+  margin-top: 48px;
+  background: linear-gradient(180deg, #f0f6ff 0%, #e1eeff 100%);
+}
+
+.secondary-cta-band__body {
+  max-width: 780px;
+}
+
+.secondary-cta-band__actions,
+.auth-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.auth-intro-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(232,241,255,0.92) 100%);
+}
+
 .input-control {
   width: 100%;
   padding: 16px;
@@ -234,6 +304,10 @@ a {
 
   .site-nav {
     gap: 16px;
+  }
+
+  .secondary-lead {
+    font-size: 16px;
   }
 
   .page-shell {

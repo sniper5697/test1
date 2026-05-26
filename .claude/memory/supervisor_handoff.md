@@ -18,6 +18,8 @@
 17. `/login`, `/signup`을 server page + client component 구조로 분리하고 route metadata를 모든 라우트에서 고정했다.
 18. `e2e/metadata.spec.ts`와 production smoke를 통해 route metadata와 built route heading을 최종 검증했다.
 19. `Voice Demo State Parity`를 `VoiceDemo/StateParity` component set으로 변환하고 `State x Device` variant 구조를 실제 Figma 파일에 생성했다.
+20. secondary pages code polish로 공통 CTA/tone/spacing 규칙을 `about/service/faq/login/signup`에 반영했다.
+21. Figma file `BHNgq4ZWHg3CyiN2fm5qHh` page `Homepage`에 `Secondary Pages/Desktop` parity root (`16:2`)를 추가했다.
 
 ## Live Session Info
 - Stitch/Gemini/Ollama/Claude 체인은 모두 사용 가능한 상태다.
@@ -57,15 +59,23 @@
   - component set id: `15:659`
   - axes: `State x Device`
   - variants: `idle, permission, listening, thinking, speaking, error, postsession` x `desktop, mobile`
+- figma secondary pages parity:
+  - root id: `16:2`
+  - child frames:
+    - `About/Desktop` `16:5`
+    - `Service/Desktop` `16:45`
+    - `FAQ/Desktop` `16:104`
+    - `Login/Desktop` `16:131`
+    - `Signup/Desktop` `16:167`
 
 ## Likely Next Tasks
 1. GitHub UI access가 가능해지면 branch protection과 required checks를 실제로 적용한다.
-2. 필요 시 `Voice Demo State Parity`를 component/variant 구조로 다듬는다.
-3. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma component parity를 유지한다.
+2. 필요 시 `Secondary Pages/Desktop`에 대응하는 mobile parity frame을 추가한다.
+3. GitHub UI branch protection 적용 전까지는 현재 green baseline과 Figma parity set을 유지한다.
 
 ## Cautions
 - Stitch 홈 전체 생성은 쉽게 붕괴하므로 한 번에 큰 프롬프트로 다시 밀지 말고 섹션 단위 전략을 유지한다.
 - Figma 관련 설정을 손댈 때 `~/.codex/config.toml`에 깨진 `mcp_servers.codex_apps` 블록을 넣지 않는다.
 - Figma 커넥터 접근 상태가 바뀌면 반드시 새 Codex 세션에서 도구 노출을 다시 확인한다.
-- 현재 작업 트리는 매우 큰 미커밋 상태다. 기존 변경을 되돌리지 말고, commit 요청이 오면 현재 상태를 그대로 묶는 쪽으로 처리한다.
+- secondary page polish 이후에는 `npm run test:unit`, `npm run typecheck`, `npm run build`, `npx playwright test e2e/secondary-pages.spec.ts`가 통과했다.
 - route title을 layout template에 의존시키면 smoke/e2e와 어긋날 수 있으므로, 주요 marketing/auth routes는 full title string을 직접 내보내는 쪽이 안전하다.
