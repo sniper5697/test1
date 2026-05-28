@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Hero } from "../components/Hero";
 import { VoiceDemo } from "../components/VoiceDemo";
 
@@ -36,14 +35,16 @@ export default function HomePage() {
     <div className="page-shell">
       <Hero />
 
-      <section className="section-card" style={{ marginTop: 64 }}>
+      <section className="section-card home-section home-section--editorial">
         <p className="eyebrow">핵심 가치</p>
-        <h2 className="title-md">정확도, 속도, 실시간성을 하나의 제품 경험으로 정리합니다</h2>
-        <div style={{ display: "grid", gap: 18, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", marginTop: 28 }}>
+        <h2 className="title-md home-section__title">
+          정확도, 속도, 실시간성을 하나의 제품 경험으로 정리합니다
+        </h2>
+        <div className="home-grid home-grid--three">
           {values.map((value) => (
-            <article key={value.title} className="section-card" style={{ padding: 24, background: "#fff", borderRadius: 24 }}>
-              <h3 style={{ marginTop: 0 }}>{value.title}</h3>
-              <p className="muted" style={{ marginBottom: 0, lineHeight: 1.7 }}>
+            <article key={value.title} className="feature-card">
+              <h3 className="feature-card__title">{value.title}</h3>
+              <p className="muted feature-card__body">
                 {value.body}
               </p>
             </article>
@@ -53,14 +54,16 @@ export default function HomePage() {
 
       <VoiceDemo />
 
-      <section className="section-card" style={{ marginTop: 64 }}>
+      <section className="section-card home-section home-section--editorial">
         <p className="eyebrow">활용 분야</p>
-        <h2 className="title-md">고객이 바로 상상할 수 있는 적용 장면을 먼저 제시합니다</h2>
-        <div style={{ display: "grid", gap: 18, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", marginTop: 28 }}>
+        <h2 className="title-md home-section__title">
+          고객이 바로 상상할 수 있는 적용 장면을 먼저 제시합니다
+        </h2>
+        <div className="home-grid home-grid--three">
           {useCases.map((useCase) => (
-            <article key={useCase} className="section-card" style={{ padding: 24, background: "#fff", borderRadius: 24 }}>
-              <h3 style={{ marginTop: 0 }}>{useCase}</h3>
-              <p className="muted" style={{ marginBottom: 0, lineHeight: 1.7 }}>
+            <article key={useCase} className="feature-card feature-card--usecase">
+              <h3 className="feature-card__title">{useCase}</h3>
+              <p className="muted feature-card__body">
                 음성 인터랙션이 필요한 환경에 맞춰 확장 가능한 제품 경험입니다.
               </p>
             </article>
@@ -68,22 +71,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-card" style={{ marginTop: 64 }}>
+      <section className="section-card home-section home-section--editorial">
         <p className="eyebrow">자주 묻는 질문</p>
-        <h2 className="title-md">도입 전 가장 많이 묻는 질문을 한 자리에서 확인할 수 있게 합니다</h2>
-        <div style={{ display: "grid", gap: 14, marginTop: 28 }}>
+        <h2 className="title-md home-section__title">
+          도입 전 가장 많이 묻는 질문을 한 자리에서 확인할 수 있게 합니다
+        </h2>
+        <div className="faq-stack">
           {faqs.map((faq) => (
-            <article key={faq} className="section-card" style={{ padding: 20, background: "#fff", borderRadius: 22 }}>
-              <h3 style={{ marginTop: 0, marginBottom: 8 }}>{faq}</h3>
-              <p className="muted" style={{ margin: 0, lineHeight: 1.7 }}>
+            <article key={faq} className="faq-card">
+              <h3 className="faq-card__title">{faq}</h3>
+              <p className="muted faq-card__body">
                 실시간 음성 데모, 정확도, 적용 환경을 기준으로 고객이 빠르게 판단할 수 있는 정보를 제공합니다.
               </p>
             </article>
           ))}
         </div>
-        <div className="section-card" style={{ marginTop: 28, padding: 28, background: "linear-gradient(180deg, #f0f6ff 0%, #e1eeff 100%)" }}>
-          <h3 style={{ marginTop: 0, marginBottom: 12 }}>지금 데모를 시작해보세요</h3>
-          <p className="muted" style={{ lineHeight: 1.7 }}>
+        <div className="final-cta-band">
+          <h3 className="final-cta-band__title">지금 데모를 시작해보세요</h3>
+          <p className="muted final-cta-band__body">
             Velora Voice의 핵심 가치를 가장 빠르게 이해하는 방법은 직접 음성으로 체험해보는 것입니다.
           </p>
           <a className="primary-button" href="#demo">
@@ -92,7 +97,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-card" style={{ marginTop: 64, display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
+      <section className="section-card footer-band">
         <strong>Velora Voice</strong>
         <span className="muted">서비스 · 소개 · FAQ · SNS</span>
       </section>
