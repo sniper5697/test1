@@ -4,7 +4,9 @@ test("homepage shows hero and same-page demo CTA behavior", async ({ page }) => 
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: "실시간 음성 AI를 더 빠르고 정확하게" }),
+    page.getByRole("heading", {
+      name: "실시간 음성 AI를 서비스에 연결하는 Voice Interface Company",
+    }),
   ).toBeVisible();
 
   await page.getByRole("link", { name: "데모 보기" }).first().click();
@@ -45,7 +47,9 @@ test.describe("mobile homepage", () => {
     await page.goto("/");
 
     await expect(
-      page.getByRole("heading", { name: "실시간 음성 AI를 더 빠르고 정확하게" }),
+      page.getByRole("heading", {
+        name: "실시간 음성 AI를 서비스에 연결하는 Voice Interface Company",
+      }),
     ).toBeVisible();
 
     await page.getByRole("link", { name: "데모 보기" }).first().click();

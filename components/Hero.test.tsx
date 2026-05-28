@@ -7,7 +7,7 @@ describe("Hero", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /실시간 음성 ai를\s*더 빠르고 정확하게/i,
+        name: /실시간 음성 ai를\s*서비스에 연결하는\s*voice interface company/i,
       }),
     ).toBeInTheDocument();
 
