@@ -74,7 +74,12 @@ jobs:
           retention-days: 7
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on:
+      - self-hosted
+      - macOS
+      - ARM64
+      - macmini
+      - deploy-80
     timeout-minutes: 20
     needs: package
     environment: ${{ inputs.environment }}
