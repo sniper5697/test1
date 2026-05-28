@@ -13,7 +13,9 @@ test("@prod-smoke built homepage renders hero, CTA, and demo without console err
 
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "실시간 음성 AI를 더 빠르고 정확하게" }),
+    page.getByRole("heading", {
+      name: "실시간 음성 AI를 서비스에 연결하는 Voice Interface Company",
+    }),
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "데모 보기" }).first()).toBeVisible();
   await page.screenshot({
@@ -57,7 +59,9 @@ test.describe("@prod-smoke built mobile homepage", () => {
   test("renders hero CTA without horizontal overflow", async ({ page }, testInfo) => {
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { name: "실시간 음성 AI를 더 빠르고 정확하게" }),
+      page.getByRole("heading", {
+        name: "실시간 음성 AI를 서비스에 연결하는 Voice Interface Company",
+      }),
     ).toBeVisible();
     await expect(page.getByRole("link", { name: "데모 보기" }).first()).toBeVisible();
 

@@ -1,33 +1,41 @@
 export function Hero() {
   return (
-    <section className="section-card hero-a1" aria-labelledby="hero-title">
-      <div className="hero-a1__grid">
-        <div className="hero-a1__copy">
-          <p className="eyebrow">실시간 음성 AI 데모</p>
-          <h1 id="hero-title" className="title-lg hero-a1__title">
+    <section className="section-card hero-company" aria-labelledby="hero-title">
+      <div className="hero-company__grid">
+        <div className="hero-company__copy">
+          <p className="eyebrow">Voice AI Company</p>
+          <h1 id="hero-title" className="title-lg hero-company__title">
             실시간 음성 AI를
             <br />
-            더 빠르고 정확하게
+            서비스에 연결하는
+            <br />
+            Voice Interface Company
           </h1>
-          <p className="muted hero-a1__body">
-            Velora Voice는 정확도, 속도, 실시간성을 하나의 경험으로 묶어 잠재 고객이
-            제품의 핵심 가치를 즉시 체험할 수 있게 돕습니다.
+          <p className="muted hero-company__body">
+            Velora Voice는 음성 인식, 응답 오케스트레이션, 실시간 UX를 하나의 흐름으로
+            설계해 고객 상담, 키오스크, 내부 업무까지 바로 연결되는 voice AI 경험을
+            만듭니다.
           </p>
-          <div className="hero-a1__actions">
+          <div className="hero-company__actions">
             <a className="primary-button" href="#demo">
               데모 보기
             </a>
           </div>
+          <div className="hero-company__signals" aria-label="주요 특성">
+            <span>정확도 중심</span>
+            <span>실시간 응답</span>
+            <span>자연스러운 인터랙션</span>
+          </div>
         </div>
 
-        <div className="hero-a1__visual" aria-hidden="true">
-          <div className="hero-a1__panel">
-            <div className="hero-a1__panel-top">
-              <span className="hero-a1__pill">Live Voice Stack</span>
-              <span className="hero-a1__tiny-label">Realtime</span>
+        <div className="hero-company__visual" aria-hidden="true">
+          <div className="hero-company__panel">
+            <div className="hero-company__panel-top">
+              <span className="hero-company__pill">Service Preview</span>
+              <span className="hero-company__tiny-label">LIVE</span>
             </div>
 
-            <div className="hero-a1__bars">
+            <div className="hero-company__bars">
               <span style={{ height: 62 }} />
               <span style={{ height: 88 }} />
               <span style={{ height: 110 }} />
@@ -37,14 +45,18 @@ export function Hero() {
               <span style={{ height: 70 }} />
             </div>
 
-            <div className="hero-a1__metrics">
+            <div className="hero-company__metrics">
               <div>
-                <strong>Fast turn</strong>
-                <span>실시간 음성 흐름</span>
+                <strong>상태</strong>
+                <span>응답 준비</span>
               </div>
               <div>
-                <strong>Clear reply</strong>
-                <span>텍스트와 음성 동시 응답</span>
+                <strong>지연</strong>
+                <span>0.7s</span>
+              </div>
+              <div>
+                <strong>모드</strong>
+                <span>실운영</span>
               </div>
             </div>
           </div>
