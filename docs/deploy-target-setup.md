@@ -63,5 +63,8 @@
 - 템플릿:
   - [velora-voice-staging.service](/Users/macmin2-choi/PROJECT/Job1/deploy/systemd/velora-voice-staging.service)
   - [velora-voice-production.service](/Users/macmin2-choi/PROJECT/Job1/deploy/systemd/velora-voice-production.service)
+- GPU 서버의 Node 런타임은 system-wide가 아니라 `cbk` 계정의 `~/.nvm` 아래 `v22.22.3`를 사용한다.
+- 따라서 원격 deploy step과 systemd `ExecStart`는 모두 `bash -lc`로 `~/.nvm/nvm.sh`를 먼저 로드해야 한다.
+- passwordless sudo는 deploy workflow가 쓰는 `systemctl restart velora-voice-{staging,production}.service` 범위로만 열어두는 것이 안전하다.
 - secrets가 비어 있으면 workflow는 실패하지 않고 skip된다.
 - 서버에 아직 공개키와 service 파일이 설치되지 않았다면 실제 deploy는 SSH 단계 또는 restart 단계에서 막힌다.

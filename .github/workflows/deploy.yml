@@ -145,8 +145,12 @@ jobs:
             set -euo pipefail; \
             mkdir -p '$DEPLOY_PATH/current'; \
             tar -xzf '$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz' -C '$DEPLOY_PATH/current'; \
-            cd '$DEPLOY_PATH/current'; \
-            npm ci --omit=dev; \
+            bash -lc ' \
+              export NVM_DIR=\"\$HOME/.nvm\"; \
+              [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"; \
+              cd \"$DEPLOY_PATH/current\"; \
+              npm ci --omit=dev; \
+            '; \
             echo 'Bundle extracted to $DEPLOY_PATH/current.'"
 
       - name: Restart service on server
