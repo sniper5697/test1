@@ -89,6 +89,7 @@ jobs:
       DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
       DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
       DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      DEPLOY_RESTART_CMD: ${{ secrets.DEPLOY_RESTART_CMD }}
 
     steps:
       - name: Download deploy bundle
@@ -127,23 +128,32 @@ jobs:
           install -m 700 -d ~/.ssh
           printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan -T 5 -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
       - name: Upload bundle to server
         if: steps.validate.outputs.ready == 'true'
         shell: bash
         run: |
-          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH/releases'"
-          scp -P "$DEPLOY_PORT" deploy-bundle.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz"
+          ssh -o BatchMode=yes -o ConnectTimeout=10 -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH/releases'"
+          scp -o BatchMode=yes -o ConnectTimeout=10 -P "$DEPLOY_PORT" deploy-bundle.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz"
 
       - name: Extract bundle on server
         if: steps.validate.outputs.ready == 'true'
         shell: bash
         run: |
-          ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "\
+          ssh -o BatchMode=yes -o ConnectTimeout=10 -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "\
             set -euo pipefail; \
             mkdir -p '$DEPLOY_PATH/current'; \
             tar -xzf '$DEPLOY_PATH/releases/deploy-bundle-${GITHUB_SHA}.tar.gz' -C '$DEPLOY_PATH/current'; \
             cd '$DEPLOY_PATH/current'; \
             npm ci --omit=dev; \
-            echo 'Bundle extracted to $DEPLOY_PATH/current. Process restart is intentionally left to server-specific automation.'"
+            echo 'Bundle extracted to $DEPLOY_PATH/current.'"
+
+      - name: Restart service on server
+        if: steps.validate.outputs.ready == 'true' && env.DEPLOY_RESTART_CMD != ''
+        shell: bash
+        run: |
+          ssh -o BatchMode=yes -o ConnectTimeout=10 -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "\
+            set -euo pipefail; \
+            cd '$DEPLOY_PATH/current'; \
+            $DEPLOY_RESTART_CMD"
