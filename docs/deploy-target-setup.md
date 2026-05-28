@@ -34,6 +34,11 @@
 - `DEPLOY_PATH`
 - `DEPLOY_SSH_KEY`
 
+## Optional Environment Secrets
+- `DEPLOY_RESTART_CMD`
+  - `staging` 추천값: `sudo systemctl restart velora-voice-staging.service`
+  - `production` 추천값: `sudo systemctl restart velora-voice-production.service`
+
 ## Expected Remote Layout
 - base path:
   - `$DEPLOY_PATH`
@@ -41,11 +46,22 @@
   - `$DEPLOY_PATH/releases/deploy-bundle-<sha>.tar.gz`
   - `$DEPLOY_PATH/current/`
 
+## Prepared Values
+- `staging`
+  - `DEPLOY_HOST=192.168.0.80`
+  - `DEPLOY_USER=cbk`
+  - `DEPLOY_PORT=22`
+  - `DEPLOY_PATH=/home/cbk/apps/velora-voice/staging`
+- `production`
+  - `DEPLOY_HOST=192.168.0.80`
+  - `DEPLOY_USER=cbk`
+  - `DEPLOY_PORT=22`
+  - `DEPLOY_PATH=/home/cbk/apps/velora-voice/production`
+
 ## Notes
-- 현재 workflow는 process restart를 강제하지 않는다.
-- 실제 서비스 재기동은 서버별 방식이 다르므로:
-  - `pm2`
-  - `systemd`
-  - `docker compose`
-  중 하나에 맞춰 후속 라운드에서 붙이면 된다.
+- 현재 restart 전략은 `systemd`를 기본으로 고정한다.
+- 템플릿:
+  - [velora-voice-staging.service](/Users/macmin2-choi/PROJECT/Job1/deploy/systemd/velora-voice-staging.service)
+  - [velora-voice-production.service](/Users/macmin2-choi/PROJECT/Job1/deploy/systemd/velora-voice-production.service)
 - secrets가 비어 있으면 workflow는 실패하지 않고 skip된다.
+- 서버에 아직 공개키와 service 파일이 설치되지 않았다면 실제 deploy는 SSH 단계 또는 restart 단계에서 막힌다.

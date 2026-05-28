@@ -1,0 +1,17 @@
+[Unit]
+Description=Velora Voice Production
+After=network.target
+
+[Service]
+Type=simple
+User=cbk
+WorkingDirectory=/home/cbk/apps/velora-voice/production/current
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/env npm start -- --hostname 0.0.0.0 --port 3000
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
