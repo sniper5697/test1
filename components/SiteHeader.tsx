@@ -18,33 +18,33 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-      <Link
-        href="/"
-        className="site-brand"
-        aria-label="Velora Voice 홈으로"
-      >
-        <span className="site-brand__dot" aria-hidden="true" />
-        <strong>Velora Voice</strong>
-      </Link>
-      <nav aria-label="주요 메뉴">
-        <ul className="site-nav">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
+        <Link
+          href="/"
+          className="site-brand"
+          aria-label="Velora Voice 홈으로"
+        >
+          <span className="site-brand__dot" aria-hidden="true" />
+          <strong>Velora Voice</strong>
+        </Link>
+        <nav aria-label="주요 메뉴">
+          <ul className="site-nav">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
 
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`site-nav__link${isActive ? " is-active" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`site-nav__link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
     </header>
   );
